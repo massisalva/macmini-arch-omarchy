@@ -14,11 +14,16 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Local `scripts/check.sh` entry point matching the CI checks.
 - Clean Arch installation guide with verification and rollback procedures.
 - Portable wallpaper launcher with a Tokyo Night color fallback.
+- `iwd` migration now writes `Country=AR` and installs the regulatory database.
 
 ### Changed
 
 - Resolved all current ShellCheck findings without changing script behavior.
 - Completed the official package list for every default binding and helper.
+- Documented how to diagnose the regulatory domain announced by the access
+  point instead of repeatedly overriding it from the client.
+- Recorded the Deco M4R UC 2.0 `US` domain as an accepted access-point
+  limitation and removed the unsuccessful experimental systemd unit.
 
 ## [0.1.0] - 2026-07-10
 

@@ -97,12 +97,24 @@ sudo ./scripts/migrate-wifi-to-iwd.sh
 ```
 
 El script instala iwd e Impala antes de cortar la red, crea un backup privado,
-valida ruta y DNS y revierte automáticamente si falla. Conservar la ruta que
-imprime. El rollback manual es:
+fija `Country=AR` en `iwd`, valida ruta y DNS y revierte automáticamente si
+falla. Conservar la ruta que imprime. El rollback manual es:
 
 ```bash
 sudo ./scripts/rollback-wifi-to-networkmanager.sh backups/system-wifi/FECHA-HORA
 ```
+
+Si el regulador queda en `US` después de asociarse, comprobar el país anunciado
+por el punto de acceso:
+
+```bash
+sudo iw dev wlan0 scan | grep -A2 'Country:'
+```
+
+El cliente debe respetar el dominio anunciado por el punto de acceso. Si el
+router permite configurar Argentina, hacerlo desde su panel. Algunas variantes
+regionales, como Deco M4R UC 2.0, quedan fijadas en `US`: no instalar una unidad
+que lo fuerce periódicamente ni mezclar firmware destinado a otros mercados.
 
 ## 6. Verificación
 
@@ -123,6 +135,7 @@ systemctl is-active iwd systemd-resolved
 iw dev
 ip route
 resolvectl status
+iw reg get
 ```
 
 El criterio de aceptación es cero unidades fallidas relevantes, audio y

@@ -14,6 +14,13 @@ La gestión Wi-Fi fue migrada de NetworkManager/wpa_supplicant a iwd para usar
 Impala, siguiendo el mismo enfoque de Omarchy. El rollback está documentado en
 `docs/wifi-impala.md`.
 
+El punto de acceso es un TP-Link Deco M4R UC 2.0, variante regional para
+Estados Unidos/Canadá, y anuncia `Country: US` en sus balizas. El kernel acepta
+inicialmente `AR`, pero al asociarse adopta correctamente el dominio anunciado
+por el router. La app no permite convertir esta variante a Argentina y se
+descartó instalar firmware de otra región o forzarlo periódicamente desde el
+cliente. Se acepta `US` como limitación conocida del punto de acceso actual.
+
 No hay que repetir la instalación ni aplicar reparaciones generales.
 
 ## Trabajo realizado
@@ -102,8 +109,8 @@ como descubrimientos nuevos.
 ## Siguiente fase
 
 1. Validar la guía desde un usuario temporal o una instalación limpia.
-2. Configurar el dominio regulatorio Wi-Fi de Argentina.
-3. Mantener dotfiles y documentación sincronizados con los cambios locales.
+2. Mantener dotfiles y documentación sincronizados con los cambios locales.
+3. Continuar la validación visual y de fluidez de la fase 2.
 
 ## Integración continua
 

@@ -17,12 +17,14 @@ command -v nmcli >/dev/null 2>&1 || {
 }
 
 interface="$(nmcli -t -f DEVICE,TYPE,STATE device | awk -F: '$2 == "wifi" && $3 ~ /connected|conectado/ {print $1; exit}')"
+
 [[ -n "$interface" ]] || {
   echo "No hay una interfaz Wi-Fi conectada; no se modificó nada." >&2
   exit 1
 }
 
 connection="$(nmcli -t -f NAME,DEVICE connection show --active | awk -F: -v dev="$interface" '$2 == dev {print $1; exit}')"
+
 [[ -n "$connection" ]] || {
   echo "No pude identificar la conexión activa; no se modificó nada." >&2
   exit 1
@@ -41,19 +43,23 @@ psk="$(nmcli --show-secrets -g 802-11-wireless-security.psk connection show "$co
   exit 1
 }
 
-echo "Instalando Impala e iwd antes de modificar el backend..."
-pacman -S --needed --noconfirm impala iwd
+echo "Instalando Impala, iwd y la base regulatoria antes de modificar el backend..."
+pacman -S --needed --noconfirm impala iwd wireless-regdb
 
 mkdir -p "$backup_dir/etc"
 chmod 700 "$backup_dir" "$backup_dir/etc"
+
 systemctl is-enabled systemd-resolved.service >"$backup_dir/resolved-enabled" 2>&1 || true
 systemctl is-active systemd-resolved.service >"$backup_dir/resolved-active" 2>&1 || true
+
 [[ -d /etc/NetworkManager ]] && cp -a /etc/NetworkManager "$backup_dir/etc/NetworkManager"
 [[ -d /etc/iwd ]] && cp -a /etc/iwd "$backup_dir/etc/iwd"
-[[ -d /var/lib/iwd ]] && {
+
+if [[ -d /var/lib/iwd ]]; then
   mkdir -p "$backup_dir/var/lib"
   cp -a /var/lib/iwd "$backup_dir/var/lib/iwd"
-}
+fi
+
 cp -a /etc/resolv.conf "$backup_dir/resolv.conf"
 printf '%s\n' "$interface" >"$backup_dir/interface"
 printf '%s\n' "$connection" >"$backup_dir/connection"
@@ -62,6 +68,7 @@ install -d -m 755 /etc/iwd
 cat >/etc/iwd/main.conf <<'EOF'
 [General]
 EnableNetworkConfiguration=true
+Country=AR
 
 [Network]
 NameResolvingService=systemd
@@ -70,10 +77,12 @@ EOF
 install -d -m 700 /var/lib/iwd
 profile="/var/lib/iwd/$ssid.psk"
 umask 077
+
 {
   printf '[Security]\nPassphrase=%s\n\n' "$psk"
   printf '[Settings]\nAutoConnect=true\n'
 } >"$profile"
+
 chmod 600 "$profile"
 unset psk
 
@@ -85,11 +94,11 @@ systemctl enable --now iwd.service
 
 success=false
 for _ in {1..20}; do
-  if ip -4 route show default dev "$interface" | grep -q '^default' &&
-     getent ahostsv4 archlinux.org >/dev/null 2>&1; then
+  if ip -4 route show default dev "$interface" | grep -q '^default' && getent ahostsv4 archlinux.org >/dev/null 2>&1; then
     success=true
     break
   fi
+
   sleep 1
 done
 

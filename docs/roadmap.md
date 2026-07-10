@@ -4,7 +4,10 @@
 
 **Estado: completada el 2026-07-10.** El reinicio confirmó cero unidades
 fallidas, PipeWire con RTKit operativo, red activa y sesión Hyprland estable.
-`wireless-regdb` está instalado; queda definir el dominio regulatorio local.
+`wireless-regdb` está instalado y la migración a iwd fija la preferencia local
+`Country=AR`. El TP-Link Deco M4R UC 2.0 anuncia legítimamente `Country: US` y
+el cliente adopta ese dominio al asociarse. Se acepta como limitación del punto
+de acceso; no se fuerza otro dominio ni se mezcla firmware entre regiones.
 
 - Ejecutar `scripts/audit.sh` desde Hyprland.
 - Revisar SMART, temperaturas, systemd, DKMS, journal y paquetes alterados.
