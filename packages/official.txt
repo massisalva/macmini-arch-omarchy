@@ -1,0 +1,47 @@
+# Escritorio y sesión
+hyprland
+hypridle
+hyprlock
+uwsm
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+
+# Interfaz
+waybar
+fuzzel
+foot
+mako
+swaybg
+swayosd
+adwaita-icon-theme
+gtk3
+gtk4
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+
+# Red y Bluetooth
+impala
+iwd
+bluetui
+bluez
+bluez-utils
+wireless-regdb
+broadcom-wl-dkms
+networkmanager
+wpa_supplicant
+
+# Audio y utilidades usadas por los scripts
+wireplumber
+pipewire
+pipewire-pulse
+rtkit
+playerctl
+wl-clipboard
+cliphist
+grim
+slurp
+jq
+libnotify
+smartmontools
