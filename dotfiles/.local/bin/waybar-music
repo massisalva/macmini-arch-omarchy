@@ -1,0 +1,539 @@
+#!/usr/bin/env bash
+
+trap 'exit 0' PIPE
+exec 2>/dev/null
+
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
+
+PLAYLIST="$HOME/.config/pyradio/playlists/argentina.csv"
+WATCH_INTERVAL="${WAYBAR_MUSIC_INTERVAL:-2}"
+STARTUP_DELAY="${WAYBAR_MUSIC_STARTUP_DELAY:-0}"
+
+notify_info() {
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Música" "$1" 2>/dev/null || true
+  fi
+}
+
+shorten() {
+  local text="$1"
+  local max="${2:-36}"
+
+  if [ "${#text}" -gt "$max" ]; then
+    printf "%s…\n" "${text:0:$max}"
+  else
+    printf "%s\n" "$text"
+  fi
+}
+
+music_player() {
+  local player paused_player status
+
+  command -v playerctl >/dev/null 2>&1 || return 1
+
+  while IFS= read -r player; do
+    [ -n "$player" ] || continue
+
+    status="$(playerctl -p "$player" status 2>/dev/null || true)"
+    if [ "$status" = "Playing" ]; then
+      printf "%s\n" "$player"
+      return 0
+    fi
+
+    if [ -z "$paused_player" ] && [ "$status" = "Paused" ]; then
+      paused_player="$player"
+    fi
+  done < <(playerctl -l 2>/dev/null | grep -Ei 'ncspot|spotify|firefox|mpv')
+
+  [ -n "$paused_player" ] || return 1
+  printf "%s\n" "$paused_player"
+}
+
+mpd_state() {
+  mpc status 2>/dev/null | sed -n '2p' | awk '{print $1}' | tr -d '[]'
+}
+
+mpd_song() {
+  mpc status 2>/dev/null | sed -n '1p'
+}
+
+active_source() {
+  local player status state song
+
+  if current_radio >/dev/null; then
+    printf 'radio\n'
+    return
+  fi
+
+  state="$(mpd_state)"
+  song="$(mpd_song)"
+  if [ "$state" = "playing" ] && [ -n "$song" ]; then
+    printf 'mpd\n'
+    return
+  fi
+
+  player="$(music_player || true)"
+  if [ -n "$player" ]; then
+    status="$(playerctl -p "$player" status 2>/dev/null || true)"
+    if [ "$status" = "Playing" ]; then
+      printf 'player:%s\n' "$player"
+      return
+    fi
+  fi
+
+  if [ "$state" = "paused" ] && [ -n "$song" ]; then
+    printf 'mpd\n'
+    return
+  fi
+
+  if [ -n "$player" ] && [ "$status" = "Paused" ]; then
+    printf 'player:%s\n' "$player"
+    return
+  fi
+
+  printf 'mpd\n'
+}
+
+app_is_open_any() {
+  command -v hyprctl >/dev/null 2>&1 || return 1
+  [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ] || return 1
+
+  hyprctl -j clients 2>/dev/null | python -c '
+import json, sys
+
+targets = set(sys.argv[1:])
+clients = json.load(sys.stdin)
+for node in clients:
+    candidates = {
+        node.get("class"),
+        node.get("initialClass"),
+        node.get("title"),
+        node.get("initialTitle"),
+    }
+    if any(value in targets for value in candidates if value):
+        raise SystemExit(0)
+raise SystemExit(1)
+' "$@"
+}
+
+pid_for_child_process() {
+  command -v python >/dev/null 2>&1 || return 1
+
+  ps -eo pid=,ppid=,args= 2>/dev/null | python -c '
+import re
+import sys
+
+targets = [arg for arg in sys.argv[1:] if arg]
+term_patterns = re.compile(r"(^|/)(foot|alacritty|kitty|wezterm|wezterm-gui|xterm|termite|gnome-terminal|konsole|xfce4-terminal)(\s|$)")
+rows = {}
+order = []
+
+for line in sys.stdin:
+    line = line.rstrip("\n")
+    if not line:
+        continue
+    parts = line.split(None, 2)
+    if len(parts) < 3:
+        continue
+    pid = int(parts[0])
+    ppid = int(parts[1])
+    args = parts[2]
+    rows[pid] = (ppid, args)
+    order.append(pid)
+
+def matches(args):
+    return any(t in args for t in targets)
+
+for pid in reversed(order):
+    ppid, args = rows[pid]
+    if not matches(args):
+        continue
+
+    current = pid
+    while current in rows:
+        parent_pid, parent_args = rows[current]
+        if term_patterns.search(args):
+            print(pid)
+            raise SystemExit(0)
+        if term_patterns.search(parent_args):
+            print(parent_pid)
+            raise SystemExit(0)
+        if parent_pid <= 1 or parent_pid == current:
+            break
+        current = parent_pid
+
+raise SystemExit(1)
+' "$@"
+}
+
+focus_pid() {
+  local pid="$1"
+
+  [ -n "$pid" ] || return 1
+  hyprctl dispatch focuswindow "pid:$pid" >/dev/null 2>&1
+}
+
+focus_window_with_child_process() {
+  command -v hyprctl >/dev/null 2>&1 || return 1
+  command -v python >/dev/null 2>&1 || return 1
+  [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ] || return 1
+
+  hyprctl -j clients 2>/dev/null | python -c '
+import json
+import subprocess
+import sys
+
+targets = [arg for arg in sys.argv[1:] if arg]
+clients = json.load(sys.stdin)
+
+rows = {}
+children = {}
+try:
+    ps = subprocess.check_output(["ps", "-eo", "pid=,ppid=,args="], text=True)
+except Exception:
+    raise SystemExit(1)
+
+for line in ps.splitlines():
+    parts = line.split(None, 2)
+    if len(parts) < 3:
+        continue
+    pid = int(parts[0])
+    ppid = int(parts[1])
+    args = parts[2]
+    rows[pid] = args
+    children.setdefault(ppid, []).append(pid)
+
+def has_descendant_process(root_pid):
+    stack = [root_pid]
+    seen = set()
+
+    while stack:
+        pid = stack.pop()
+        if pid in seen:
+            continue
+        seen.add(pid)
+
+        args = rows.get(pid, "")
+        if any(target in args for target in targets):
+            return True
+
+        stack.extend(children.get(pid, []))
+
+    return False
+
+for node in clients:
+    pid = node.get("pid")
+    if pid and has_descendant_process(pid):
+        print(node["address"])
+        raise SystemExit(0)
+raise SystemExit(1)
+' "$@" | {
+    read -r address
+    [ -n "$address" ] || return 1
+    hyprctl dispatch focuswindow "address:$address" >/dev/null 2>&1
+  }
+}
+
+focus_running_terminal() {
+  local pid
+
+  focus_window_with_child_process "$@" && return 0
+  pid="$(pid_for_child_process "$@")" || return 1
+  focus_pid "$pid"
+}
+
+exec_detached() {
+  "$@" >/dev/null 2>&1 &
+}
+
+open_terminal_player() {
+  local app_id="$1"
+  local process="$2"
+  shift 2
+
+  if app_is_open_any "$app_id"; then
+    focus_window_any "$app_id" && exit 0
+  fi
+
+  focus_running_terminal "$process" && exit 0
+  exec_detached foot --app-id "$app_id" -e "$@"
+}
+
+open_graphical_player() {
+  local app="$1"
+  shift
+
+  if focus_window_any "$@"; then
+    exit 0
+  fi
+
+  if command -v "$app" >/dev/null 2>&1; then
+    exec_detached "$app"
+  else
+    notify_info "$app está reproduciendo, pero no encontré el ejecutable"
+  fi
+}
+
+focus_window_any() {
+  command -v hyprctl >/dev/null 2>&1 || return 1
+  [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ] || return 1
+
+  hyprctl -j clients 2>/dev/null | python -c '
+import json, sys
+
+targets = set(sys.argv[1:])
+clients = json.load(sys.stdin)
+for node in clients:
+    candidates = {
+        node.get("class"),
+        node.get("initialClass"),
+        node.get("title"),
+        node.get("initialTitle"),
+    }
+    if any(value in targets for value in candidates if value):
+        print(node["address"])
+        raise SystemExit(0)
+raise SystemExit(1)
+' "$@" | {
+    read -r address
+    [ -n "$address" ] || return 1
+    hyprctl dispatch focuswindow "address:$address" >/dev/null 2>&1
+  }
+}
+
+open_active() {
+  local source
+  source="$(active_source)"
+
+  case "$source" in
+    radio)
+      open_terminal_player foot-music-pyradio pyradio pyradio-music
+      ;;
+    mpd)
+      open_terminal_player foot-music-ncmpcpp ncmpcpp ncmpcpp
+      ;;
+    player:*ncspot*)
+      open_terminal_player foot-music-ncspot ncspot ncspot
+      ;;
+    player:*spotify*)
+      if app_is_open_any spotify Spotify spotify-client spotifyd; then
+        focus_window_any spotify Spotify spotify-client spotifyd && exit 0
+      fi
+
+      if command -v spotify >/dev/null 2>&1; then
+        spotify >/dev/null 2>&1 &
+      else
+        notify_info "Spotify está reproduciendo, pero no encontré la app gráfica"
+      fi
+      ;;
+    player:*firefox*)
+      open_graphical_player firefox firefox Firefox Navigator
+      ;;
+    *)
+      open_terminal_player foot-music-ncmpcpp ncmpcpp ncmpcpp
+      ;;
+  esac
+}
+
+control_active() {
+  local action="$1"
+  local source player mpv_player
+
+  source="$(active_source)"
+
+  case "$source" in
+    radio)
+      mpv_player="$(command -v playerctl >/dev/null 2>&1 && playerctl -l 2>/dev/null | grep -Ei '^mpv' | head -n1 || true)"
+      if [ -n "$mpv_player" ]; then
+        playerctl -p "$mpv_player" "$action" >/dev/null 2>&1 || true
+      else
+        notify_info "PyRadio no expone controles MPRIS"
+      fi
+      ;;
+    mpd)
+      case "$action" in
+        play-pause) mpc toggle >/dev/null 2>&1 || true ;;
+        next) mpc next >/dev/null 2>&1 || true ;;
+        previous) mpc prev >/dev/null 2>&1 || true ;;
+      esac
+      ;;
+    player:*)
+      player="${source#player:}"
+      playerctl -p "$player" "$action" >/dev/null 2>&1 || true
+      ;;
+    *)
+      mpc toggle >/dev/null 2>&1 || true
+      ;;
+  esac
+}
+
+normalize_url() {
+  printf '%s\n' "$1" \
+    | sed 's/&amp;/\&/g' \
+    | sed 's/[?].*$//' \
+    | sed 's#/$##'
+}
+
+radio_from_url() {
+  local url="$1"
+  local url_clean
+  local name stream rest stream_clean
+
+  [ -f "$PLAYLIST" ] || return 1
+  [ -n "$url" ] || return 1
+
+  url_clean="$(normalize_url "$url")"
+
+  while IFS=',' read -r name stream rest; do
+    [ -n "$name" ] || continue
+    [ -n "$stream" ] || continue
+
+    stream_clean="$(normalize_url "$stream")"
+
+    if [ "$stream" = "$url" ] || [ "$stream_clean" = "$url_clean" ]; then
+      printf "%s\n" "$name"
+      return 0
+    fi
+
+    case "$url_clean" in
+      *"$stream_clean"* )
+        printf "%s\n" "$name"
+        return 0
+        ;;
+    esac
+
+    case "$stream_clean" in
+      *"$url_clean"* )
+        printf "%s\n" "$name"
+        return 0
+        ;;
+    esac
+  done < "$PLAYLIST"
+
+  return 1
+}
+
+current_radio() {
+  local line url station
+
+  line="$(ps -eo args | grep -E '(^| )mpv .*--profile=pyradio' | grep -v grep | head -n1 || true)"
+  [ -n "$line" ] || return 1
+
+  url="$(printf '%s\n' "$line" | awk '{
+    for (i=1; i<=NF; i++) {
+      if ($i ~ /^https?:\/\//) {
+        print $i
+        exit
+      }
+    }
+  }')"
+
+  [ -n "$url" ] || return 1
+
+  station="$(radio_from_url "$url" || true)"
+
+  if [ -n "$station" ]; then
+    station="$(shorten "$station" 30)"
+    printf "󰠃 %s\n" "$station"
+  else
+    printf "󰠃 Radio\n"
+  fi
+}
+
+current_song() {
+  local mpd_status mpd_song mpd_state
+  local player status artist title song
+
+  # 0) PyRadio / mpv
+  if current_radio; then
+    return
+  fi
+
+  mpd_status="$(mpc status 2>/dev/null || true)"
+  mpd_song="$(printf '%s\n' "$mpd_status" | sed -n '1p')"
+  mpd_state="$(printf '%s\n' "$mpd_status" | sed -n '2p' | awk '{print $1}' | tr -d '[]')"
+
+  # 1) MPD / ncmpcpp reproduciendo
+  if [ "$mpd_state" = "playing" ] && [ -n "$mpd_song" ]; then
+    song="$(shorten "$mpd_song" 36)"
+    printf "󰎈 %s\n" "$song"
+    return
+  fi
+
+  # 2) ncspot / Spotify / Firefox reproduciendo o pausado
+  if command -v playerctl >/dev/null 2>&1; then
+    player="$(music_player | grep -Ei 'ncspot|spotify|firefox' | head -n1 || true)"
+
+    if [ -n "$player" ]; then
+      status="$(playerctl -p "$player" status 2>/dev/null || true)"
+      if [ "$status" = "Playing" ] || [ "$status" = "Paused" ]; then
+        artist="$(playerctl -p "$player" metadata artist 2>/dev/null || true)"
+        title="$(playerctl -p "$player" metadata title 2>/dev/null || true)"
+
+        if [ -n "$title" ]; then
+          if [ -n "$artist" ]; then
+            song="$artist - $title"
+          else
+            song="$title"
+          fi
+
+          song="$(shorten "$song" 36)"
+          if [ "$status" = "Playing" ]; then
+            printf "󰓇 %s\n" "$song"
+          else
+            printf "󰏤 %s\n" "$song"
+          fi
+          return
+        fi
+      fi
+    fi
+  fi
+
+  # 3) MPD pausado
+  if [ "$mpd_state" = "paused" ] && [ -n "$mpd_song" ]; then
+    song="$(shorten "$mpd_song" 36)"
+    printf "󰏤 %s\n" "$song"
+    return
+  fi
+
+  printf "\n"
+}
+
+case "${1:-}" in
+  --open)
+    open_active
+    exit 0
+    ;;
+  --toggle)
+    control_active play-pause
+    exit 0
+    ;;
+  --next)
+    control_active next
+    exit 0
+    ;;
+  --prev)
+    control_active previous
+    exit 0
+    ;;
+esac
+
+if [ "${1:-}" = "--watch" ]; then
+  printf "\n"
+  last=""
+  if [ "$STARTUP_DELAY" != "0" ]; then
+    sleep "$STARTUP_DELAY"
+  fi
+
+  while true; do
+    now="$(current_song)"
+    if [ "$now" != "$last" ]; then
+      printf "%s\n" "$now"
+      last="$now"
+    fi
+    sleep "$WATCH_INTERVAL"
+  done
+else
+  current_song
+fi

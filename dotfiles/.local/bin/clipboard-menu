@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "${1:-pick}" in
+  pick)
+    selection="$(cliphist list | fuzzel --dmenu --prompt='  ' --placeholder='Historial del portapapeles')" || exit 0
+    [ -n "$selection" ] || exit 0
+    printf '%s' "$selection" | cliphist decode | wl-copy
+    notify-send -a clipboard "Portapapeles" "Elemento copiado"
+    ;;
+  wipe)
+    printf '%s\n' "Cancelar" "Borrar historial" |
+      fuzzel --dmenu --prompt='  ' --placeholder='Confirmar limpieza' |
+      grep -qx "Borrar historial" || exit 0
+    cliphist wipe
+    notify-send -a clipboard "Portapapeles" "Historial borrado"
+    ;;
+  *)
+    printf 'Uso: %s [pick|wipe]\n' "$0" >&2
+    exit 2
+    ;;
+esac
