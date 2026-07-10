@@ -12,7 +12,10 @@ if [ -z "${WAYLAND_DISPLAY:-}" ]; then
     export WAYLAND_DISPLAY="wayland-1"
   else
     WAYLAND_SOCKET="$(find "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name 'wayland-*' 2>/dev/null | head -n1)"
-    [ -n "$WAYLAND_SOCKET" ] && export WAYLAND_DISPLAY="$(basename "$WAYLAND_SOCKET")"
+    if [ -n "$WAYLAND_SOCKET" ]; then
+      WAYLAND_DISPLAY="$(basename "$WAYLAND_SOCKET")"
+      export WAYLAND_DISPLAY
+    fi
   fi
 fi
 
@@ -22,12 +25,10 @@ notify_info() {
   fi
 }
 
-for cmd in grim; do
-  if ! command -v "$cmd" >/dev/null 2>&1; then
-    notify_info "No encontré $cmd"
-    exit 1
-  fi
-done
+if ! command -v grim >/dev/null 2>&1; then
+  notify_info "No encontré grim"
+  exit 1
+fi
 
 if [ -z "${WAYLAND_DISPLAY:-}" ]; then
   notify_info "No pude encontrar la sesión gráfica"

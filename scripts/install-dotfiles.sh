@@ -23,7 +23,7 @@ if [[ "$dry_run" == true ]]; then
   exit 0
 fi
 
-backup="$($project_dir/scripts/backup-dotfiles.sh | sed -n 's/^Backup creado en: //p')"
+backup="$("$project_dir/scripts/backup-dotfiles.sh" | sed -n 's/^Backup creado en: //p')"
 [[ -n "$backup" && -d "$backup" ]] || {
   echo "No pude verificar el backup; despliegue cancelado." >&2
   exit 1

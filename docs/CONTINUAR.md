@@ -101,9 +101,9 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Crear la versión pública `v0.1.0` desde el changelog actual.
-2. Mantener dotfiles y documentación sincronizados con los cambios locales.
-3. Conservar fuera de Git los informes, backups y datos particulares.
+1. Confirmar que la primera ejecución de GitHub Actions termine correctamente.
+2. Mejorar la guía de instalación desde un Arch limpio.
+3. Mantener dotfiles y documentación sincronizados con los cambios locales.
 
 ## Estado de Git
 

@@ -13,5 +13,5 @@ command -v smartctl >/dev/null 2>&1 || {
 
 mkdir -p "$out_dir"
 echo "Se solicitará la contraseña administrativa para leer SMART de /dev/sda."
-sudo smartctl -x /dev/sda >"$out_file"
+sudo smartctl -x /dev/sda | tee "$out_file" >/dev/null
 echo "Informe SMART creado en: $out_file"

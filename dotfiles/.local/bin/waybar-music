@@ -417,7 +417,7 @@ radio_from_url() {
 current_radio() {
   local line url station
 
-  line="$(ps -eo args | grep -E '(^| )mpv .*--profile=pyradio' | grep -v grep | head -n1 || true)"
+  line="$(pgrep -af 'mpv .*--profile=pyradio' | head -n1 || true)"
   [ -n "$line" ] || return 1
 
   url="$(printf '%s\n' "$line" | awk '{

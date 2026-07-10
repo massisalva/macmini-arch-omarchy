@@ -7,6 +7,16 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Added
+
+- GitHub Actions CI for Bash analysis, executable permissions, dry-run
+  installation and high-risk credential patterns.
+- Local `scripts/check.sh` entry point matching the CI checks.
+
+### Changed
+
+- Resolved all current ShellCheck findings without changing script behavior.
+
 ## [0.1.0] - 2026-07-10
 
 ### Added

@@ -1,5 +1,7 @@
 # Mac mini Arch + Hyprland
 
+[![CI](https://github.com/massisalva/macmini-arch-omarchy/actions/workflows/ci.yml/badge.svg)](https://github.com/massisalva/macmini-arch-omarchy/actions/workflows/ci.yml)
+
 Configuración reproducible y documentada de Arch Linux con Hyprland para un
 Apple Mac mini 2014 (`Macmini7,1`), inspirada visualmente en
 [Omarchy](https://github.com/basecamp/omarchy) y ajustada a un Intel Core
@@ -58,6 +60,15 @@ SMART necesita privilegios y se obtiene por separado:
 ```bash
 ./scripts/audit-smart.sh
 ```
+
+Para ejecutar las mismas validaciones que GitHub Actions:
+
+```bash
+./scripts/check.sh
+```
+
+Requiere `shellcheck`; valida sintaxis, permisos ejecutables, instalación en
+seco y patrones de credenciales de alto riesgo en el árbol y el historial.
 
 ## Estructura
 

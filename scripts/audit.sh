@@ -43,7 +43,10 @@ run audio wpctl status
 run bluetooth bluetoothctl show
 run sensors sensors
 run dkms dkms status
+# Expansions intentionally run inside the child shell.
+# shellcheck disable=SC2016
 run cpu-vulnerabilities bash -c 'for f in /sys/devices/system/cpu/vulnerabilities/*; do printf "%s: " "${f##*/}"; cat "$f"; done'
+# shellcheck disable=SC2016
 run recommended-packages bash -c 'for p in smartmontools rtkit wireless-regdb; do pacman -Q "$p" 2>&1 || true; done'
 run firewall-unprivileged ufw status
 run package-list pacman -Q
