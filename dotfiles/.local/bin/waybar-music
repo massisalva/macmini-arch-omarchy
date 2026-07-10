@@ -344,7 +344,10 @@ control_active() {
 
   case "$source" in
     radio)
-      mpv_player="$(command -v playerctl >/dev/null 2>&1 && playerctl -l 2>/dev/null | grep -Ei '^mpv' | head -n1 || true)"
+      mpv_player=""
+      if command -v playerctl >/dev/null 2>&1; then
+        mpv_player="$(playerctl -l 2>/dev/null | grep -Ei '^mpv' | head -n1 || true)"
+      fi
       if [ -n "$mpv_player" ]; then
         playerctl -p "$mpv_player" "$action" >/dev/null 2>&1 || true
       else

@@ -41,7 +41,11 @@ if [[ -d "$source_dir/.local/bin" ]]; then
   done < <(find "$source_dir/.local/bin" -maxdepth 1 -type f -print0)
 fi
 
-command -v hyprctl >/dev/null 2>&1 && hyprctl reload >/dev/null || true
-command -v systemctl >/dev/null 2>&1 && systemctl --user restart waybar.service mako.service || true
+if command -v hyprctl >/dev/null 2>&1; then
+  hyprctl reload >/dev/null || true
+fi
+if command -v systemctl >/dev/null 2>&1; then
+  systemctl --user restart waybar.service mako.service || true
+fi
 
 echo "Dotfiles desplegados. Backup: $backup"

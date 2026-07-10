@@ -157,7 +157,7 @@ if [ "${DISK_MANAGER_DRY_RUN:-0}" = "1" ]; then
   exit 0
 fi
 
-CHOICE="$(cat "$MENU" | fuzzel --dmenu --width=42 --lines=8 --prompt="Discos: ")"
+CHOICE="$(fuzzel --dmenu --width=42 --lines=8 --prompt="Discos: " <"$MENU")"
 [ -z "$CHOICE" ] && exit 0
 
 ID="$(echo "$CHOICE" | cut -d')' -f1)"

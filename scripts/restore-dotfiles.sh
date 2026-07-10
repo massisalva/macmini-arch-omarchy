@@ -16,6 +16,10 @@ while IFS= read -r -d '' source_path; do
   cp -a -- "$source_path" "$target"
 done < <(find "$backup_dir" -mindepth 1 \( -type f -o -type l \) -print0)
 
-command -v hyprctl >/dev/null 2>&1 && hyprctl reload >/dev/null || true
-command -v systemctl >/dev/null 2>&1 && systemctl --user restart waybar.service mako.service || true
+if command -v hyprctl >/dev/null 2>&1; then
+  hyprctl reload >/dev/null || true
+fi
+if command -v systemctl >/dev/null 2>&1; then
+  systemctl --user restart waybar.service mako.service || true
+fi
 printf 'Backup restaurado desde: %s\n' "$backup_dir"
