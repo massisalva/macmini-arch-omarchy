@@ -108,16 +108,21 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Validar la guía desde un usuario temporal o una instalación limpia.
-2. Mantener dotfiles y documentación sincronizados con los cambios locales.
-3. Publicar los commits validados pendientes en `origin/main`.
+1. Mantener dotfiles y documentación sincronizados con los cambios locales.
+2. Reservar una validación desde Arch limpio para cuando exista una máquina o
+   entorno descartable apropiado; la instalación en HOME vacío ya pasó.
 
 ## Integración continua
 
-GitHub Actions quedó activa el 2026-07-10. La ejecución corregida
-`29094174511` terminó correctamente y valida ShellCheck, sintaxis Bash,
-permisos ejecutables, instalación en seco y patrones de credenciales de alto
-riesgo.
+GitHub Actions quedó activa el 2026-07-10. La ejecución `29109994602`, asociada
+al cierre de la fase visual, terminó correctamente y valida ShellCheck,
+sintaxis Bash, permisos ejecutables, instalación en seco y patrones de
+credenciales de alto riesgo.
+
+El instalador también se ejecutó nuevamente en un HOME temporal vacío el
+2026-07-10. La comparación byte a byte de todos los archivos desplegados
+terminó sin diferencias y los comandos de recarga se aislaron para no afectar
+la sesión real.
 
 ## Estado de Git
 

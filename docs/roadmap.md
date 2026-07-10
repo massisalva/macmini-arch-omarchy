@@ -36,7 +36,8 @@ Hyprland limpia y uso en reposo acorde con un equipo de 8 GiB.
 
 **Estado: completada localmente el 2026-07-10.** Los dotfiles, listas de
 paquetes y scripts portables de backup, instalación y restauración están
-versionados; el instalador fue validado en un HOME temporal.
+versionados. El instalador fue validado nuevamente en un HOME vacío y todos
+los archivos desplegados coincidieron byte a byte con el repositorio.
 
 - Incorporar dotfiles revisados y libres de datos privados.
 - Crear scripts idempotentes de backup, instalación y restauración.
