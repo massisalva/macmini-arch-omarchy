@@ -9,7 +9,6 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ### Pending
 
-- Add a privacy-reviewed desktop screenshot.
 - Publish the repository on GitHub.
 
 ## [0.1.0] - 2026-07-10
@@ -23,6 +22,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Declarative official and AUR package lists.
 - Wi-Fi migration from NetworkManager to iwd with automatic rollback support.
 - Hardware health, performance, visual inventory and recovery documentation.
+- Privacy-reviewed desktop screenshot.
 
 ### Changed
 
