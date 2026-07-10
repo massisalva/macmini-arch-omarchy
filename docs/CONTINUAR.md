@@ -5,10 +5,10 @@ Wi-Fi tras un reinicio.
 
 ## Dónde estamos
 
-La fase 1, auditoría de salud y línea base, está terminada. El arranque
-posterior confirmó systemd limpio y red, audio, Bluetooth y Hyprland
-operativos. La fase 2 de adaptación visual está en curso y su inventario se
-encuentra en `docs/inventory-visual.md`.
+La fase 1, auditoría de salud y línea base, y la fase 2 de adaptación visual
+están terminadas. El arranque posterior confirmó systemd limpio y red, audio,
+Bluetooth y Hyprland operativos. El inventario visual final se encuentra en
+`docs/inventory-visual.md`.
 
 La gestión Wi-Fi fue migrada de NetworkManager/wpa_supplicant a iwd para usar
 Impala, siguiendo el mismo enfoque de Omarchy. El rollback está documentado en
@@ -110,7 +110,7 @@ como descubrimientos nuevos.
 
 1. Validar la guía desde un usuario temporal o una instalación limpia.
 2. Mantener dotfiles y documentación sincronizados con los cambios locales.
-3. Continuar la validación visual y de fluidez de la fase 2.
+3. Publicar los commits validados pendientes en `origin/main`.
 
 ## Integración continua
 

@@ -52,13 +52,13 @@ La mayor parte del escritorio usa Tokyo Night:
 
 Hyprland, Waybar, Foot, Mako e Hyprlock ya comparten esta familia.
 
-## Inconsistencias detectadas
+## Inconsistencias resueltas
 
-1. Fuzzel utiliza otra paleta gris/naranja y no coincide con Tokyo Night.
-2. GTK conserva Adwaita, sus iconos y su cursor predeterminados.
-3. La referencia ZIP disponible es el proyecto previo
-   `conectar-igualdad-sway`; sirve para scripts y comportamiento, no como
-   fuente visual principal de Hyprland.
+1. Fuzzel fue unificado con la paleta Tokyo Night.
+2. GTK conserva deliberadamente Adwaita oscuro, incluidos iconos y cursor,
+   para evitar dependencias externas y mantener una apariencia coherente.
+3. La referencia ZIP del proyecto previo `conectar-igualdad-sway` se usó sólo
+   para scripts y comportamiento, no como fuente visual de Hyprland.
 
 ## Dependencias confirmadas
 
@@ -75,7 +75,7 @@ Swaybg, UWSM, los portales de Hyprland/GTK y JetBrains Mono Nerd Font.
 - evitar procesos duplicados para launcher y lockscreen;
 - mantener `personal.conf` fuera del perfil portable.
 
-## Decisiones para la siguiente iteración
+## Decisiones aplicadas
 
 1. Mantener Fuzzel como único launcher por ligereza.
 2. Unificar Fuzzel con la paleta Tokyo Night.
@@ -84,3 +84,7 @@ Swaybg, UWSM, los portales de Hyprland/GTK y JetBrains Mono Nerd Font.
    incorporar temas externos no instalados.
 5. Versionar configuraciones y scripts propios en `dotfiles/`, excluyendo
    `personal.conf` y fondos previos.
+
+La configuración portable se desplegó nuevamente el 2026-07-10 y se comprobó
+que Hyprland recarga sin errores, Waybar y Mako permanecen activos y los
+archivos de la sesión coinciden con los versionados.

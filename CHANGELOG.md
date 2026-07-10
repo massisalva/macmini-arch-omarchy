@@ -24,6 +24,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   point instead of repeatedly overriding it from the client.
 - Recorded the Deco M4R UC 2.0 `US` domain as an accepted access-point
   limitation and removed the unsuccessful experimental systemd unit.
+- Completed the final portable-dotfiles deployment and visual-session
+  consistency check.
 
 ## [0.1.0] - 2026-07-10
 

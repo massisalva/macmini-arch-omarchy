@@ -19,8 +19,9 @@ propietarios del sistema correctos y sesión gráfica sin errores repetitivos.
 
 ## Fase 2 — Paridad visual con Omarchy
 
-**Estado: en curso desde el 2026-07-10.** Inventario inicial documentado en
-`docs/inventory-visual.md`.
+**Estado: completada el 2026-07-10.** La paleta Tokyo Night, los componentes
+ligeros y los dotfiles portables están unificados. El despliegue final recargó
+Hyprland sin errores y dejó Waybar y Mako activos.
 
 - Inventariar la configuración actual y compararla con Omarchy upstream.
 - Unificar paleta, tipografía, espaciado, bordes, barra, launcher, lockscreen,
