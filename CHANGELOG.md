@@ -34,6 +34,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   Niri, Xwayland Satellite and Swayidle packages.
 - Removed five unused packages, including two debug artifacts, and verified
   zero remaining orphans and failed units.
+- Added an SSH hardening helper that restricts port 22 to the detected local
+  subnet, disables root login and enables UFW.
+- Made the helper remove pre-existing unrestricted SSH rules and explicitly
+  enable Arch's `ufw.service` for persistence across reboots.
 
 ## [0.1.0] - 2026-07-10
 

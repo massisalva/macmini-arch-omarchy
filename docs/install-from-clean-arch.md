@@ -142,6 +142,20 @@ El criterio de aceptación es cero unidades fallidas relevantes, audio y
 portales activos, Waybar y Mako visibles, atajos funcionales, ruta y DNS
 operativos y ausencia de errores nuevos repetitivos en el journal.
 
+### SSH sólo para la red local
+
+Si se necesita acceso SSH ocasional únicamente desde la LAN, ejecutar:
+
+```bash
+sudo ./scripts/harden-ssh-lan.sh
+```
+
+El script detecta la interfaz y subred conectadas, impide el acceso de root y
+habilita UFW permitiendo TCP/22 sólo desde esa subred. Mantiene autenticación
+por contraseña hasta que una clave haya sido instalada y probada. Para retirar
+la regla manualmente, usar `sudo ufw delete allow from SUBRED to any port 22
+proto tcp` antes de definir una política alternativa.
+
 ## Restauración de dotfiles
 
 Para recuperar una copia creada antes del despliegue:

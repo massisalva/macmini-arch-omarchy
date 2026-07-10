@@ -29,6 +29,20 @@ confirmar si el acceso remoto se utiliza:
 - si se usa, comprobar autenticación por clave, desactivar contraseña y root,
   y habilitar una política de firewall limitada a la red local.
 
+Se confirmó que SSH se usa ocasionalmente y sólo desde la LAN
+`192.168.1.0/24`. `scripts/harden-ssh-lan.sh` configura UFW con entrada
+predeterminada denegada, permite TCP/22 únicamente desde la subred conectada,
+deshabilita acceso de root y valida la configuración antes de reiniciar SSH.
+La contraseña se conserva hasta instalar y probar una clave desde el cliente.
+En Arch también habilita explícitamente `ufw.service`; `ufw enable` actualiza
+la configuración pero por sí solo no garantiza que la unidad systemd quede
+habilitada para restaurar las reglas después de reiniciar.
+
+**Aplicado el 2026-07-10:** UFW y SSH quedaron habilitados y activos, con cero
+unidades fallidas. La única regla de entrada para TCP/22 acepta
+`192.168.1.0/24`; se eliminaron permisos anteriores para cualquier origen.
+Queda migrar de contraseña a clave en una iteración posterior.
+
 ### 2. Paquetes de depuración residuales
 
 `onedrive-abraunegg-debug` es el único huérfano confirmado. También está
