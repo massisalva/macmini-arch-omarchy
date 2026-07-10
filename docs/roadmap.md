@@ -1,0 +1,47 @@
+# Hoja de ruta
+
+## Fase 1 — Salud y línea base
+
+**Estado: completada el 2026-07-10.** El reinicio confirmó cero unidades
+fallidas, PipeWire con RTKit operativo, red activa y sesión Hyprland estable.
+`wireless-regdb` está instalado; queda definir el dominio regulatorio local.
+
+- Ejecutar `scripts/audit.sh` desde Hyprland.
+- Revisar SMART, temperaturas, systemd, DKMS, journal y paquetes alterados.
+- Corregir únicamente fallos confirmados y documentar cada cambio.
+- Guardar listas de paquetes explícitos oficiales y AUR.
+
+Criterio de aceptación: cero unidades fallidas relevantes, SSD saludable,
+propietarios del sistema correctos y sesión gráfica sin errores repetitivos.
+
+## Fase 2 — Paridad visual con Omarchy
+
+**Estado: en curso desde el 2026-07-10.** Inventario inicial documentado en
+`docs/inventory-visual.md`.
+
+- Inventariar la configuración actual y compararla con Omarchy upstream.
+- Unificar paleta, tipografía, espaciado, bordes, barra, launcher, lockscreen,
+  notificaciones, terminal, GTK, iconos, cursor y wallpapers.
+- Adaptar animaciones y blur al Intel HD 5100.
+- Medir RAM en reposo, fluidez y errores de render antes/después.
+
+Criterio de aceptación: apariencia coherente y cercana a Omarchy, recarga de
+Hyprland limpia y uso en reposo acorde con un equipo de 8 GiB.
+
+## Fase 3 — Reproducibilidad
+
+- Incorporar dotfiles revisados y libres de datos privados.
+- Crear scripts idempotentes de backup, instalación y restauración.
+- Declarar paquetes oficiales/AUR y servicios habilitados.
+- Documentar instalación desde Arch limpio y procedimiento de rollback.
+
+Criterio de aceptación: poder reconstruir la experiencia desde un usuario
+nuevo siguiendo solo el README.
+
+## Fase 4 — GitHub
+
+- Revisar secretos e información personal en todo el historial.
+- Inicializar Git, hacer el primer commit y crear el remoto.
+- Añadir licencia, capturas, changelog y política de actualización.
+
+Criterio de aceptación: clonación y prueba de instalación en seco exitosas.

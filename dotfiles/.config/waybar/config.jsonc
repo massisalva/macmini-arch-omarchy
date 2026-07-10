@@ -1,0 +1,128 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 26,
+  "spacing": 0,
+
+  "modules-left": ["hyprland/workspaces", "custom/music"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/capslock", "custom/disk", "cpu", "memory", "bluetooth", "network", "pulseaudio", "custom/power"],
+
+  "custom/music": {
+    "exec": "~/.local/bin/waybar-music --watch",
+    "return-type": "text",
+    "on-click": "~/.local/bin/waybar-music --open",
+    "on-click-right": "~/.local/bin/waybar-music --toggle",
+    "on-scroll-up": "~/.local/bin/waybar-music --next",
+    "on-scroll-down": "~/.local/bin/waybar-music --prev",
+    "tooltip": true,
+    "tooltip-format": "Click: abrir reproductor activo | Click derecho: reproducir/pausar | Scroll: siguiente/anterior"
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "default": "·",
+      "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+      "6": "6", "7": "7", "8": "8", "9": "9", "10": "0",
+      "active": "●"
+    },
+    "persistent-workspaces": { "1": [], "2": [], "3": [], "4": [], "5": [] }
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d %b  %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  "custom/capslock": {
+    "exec": "~/.local/bin/waybar-capslock",
+    "return-type": "json",
+    "interval": 1,
+    "format": "{}",
+    "tooltip": true
+  },
+
+  "custom/disk": {
+    "exec": "~/.local/bin/disk-status",
+    "return-type": "json",
+    "interval": 10,
+    "format": "{}",
+    "on-click": "~/.local/bin/disk-manager",
+    "tooltip": true
+  },
+
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "interval": 5,
+    "states": { "warning": 70, "critical": 90 },
+    "on-click": "foot --app-id foot-system -e btop",
+    "tooltip": true
+  },
+
+  "memory": {
+    "format": "󰍛 {used:0.1f}G",
+    "interval": 5,
+    "states": { "warning": 70, "critical": 90 },
+    "on-click": "foot --app-id foot-system -e btop",
+    "tooltip": true
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-connected": "󰂱 {device_alias}",
+    "format-disabled": "󰂲 apagado",
+    "format-off": "󰂲 apagado",
+    "format-no-controller": "󰂲 sin BT",
+    "tooltip-format": "Bluetooth: {status}\nControlador: {controller_alias}\nClick para abrir bluetui",
+    "tooltip-format-connected": "Conectado: {device_alias}\nControlador: {controller_alias}\nClick para abrir bluetui",
+    "tooltip-format-disabled": "Bluetooth apagado\nClick para abrir bluetui",
+    "on-click": "~/.local/bin/bluetooth-menu"
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-disconnected": "󰤭 Sin red",
+    "tooltip-format-wifi": "Red: {essid}\nInterfaz: {ifname}\nIP: {ipaddr}\nSeñal: {signalStrength}%",
+    "tooltip-format-disconnected": "Sin conexión\nClick para abrir redes",
+    "on-click": "~/.local/bin/network-menu"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 silenciado",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "tooltip-format": "Audio: {desc}\nVolumen: {volume}%\nClick: pulsemixer\nClick derecho: cambiar salida",
+    "tooltip-format-muted": "Audio silenciado: {desc}\nClick: pulsemixer\nClick derecho: cambiar salida",
+    "on-click": "~/.local/bin/audio-menu",
+    "on-click-right": "~/.local/bin/audio-output-menu"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "tooltip": true,
+    "tooltip-format": "Brillo: {percent}%"
+  },
+
+  "custom/battery": {
+    "exec": "~/.local/bin/waybar-battery",
+    "return-type": "json",
+    "interval": 20,
+    "format": "{}",
+    "on-click": "~/.local/bin/battery-menu",
+    "tooltip": true
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "~/.local/bin/power-menu",
+    "tooltip": true,
+    "tooltip-format": "Opciones de energía"
+  }
+
+}

@@ -1,0 +1,8 @@
+reports/local/
+backups/
+*.local
+*.secret
+*.bak
+*~
+.env
+.DS_Store
