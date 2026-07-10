@@ -28,6 +28,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   consistency check.
 - Revalidated the complete dotfiles installer in an isolated empty HOME with
   byte-for-byte output comparison.
+- Added an applications and services audit covering packages, orphans, SSH,
+  resource usage and reproducibility gaps.
 
 ## [0.1.0] - 2026-07-10
 

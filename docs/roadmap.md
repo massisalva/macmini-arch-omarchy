@@ -58,3 +58,16 @@ en GitHub.
 - Añadir licencia, capturas, changelog y política de actualización.
 
 Criterio de aceptación: clonación y prueba de instalación en seco exitosas.
+
+## Fase 5 — Aplicaciones y superficie de servicios
+
+**Estado: auditoría completada el 2026-07-10; decisiones pendientes.** El
+inventario y las recomendaciones están en `docs/audit-applications.md`.
+
+- Resolver la necesidad de SSH y definir su política de acceso.
+- Retirar artefactos de depuración huérfanos.
+- Confirmar si Niri continúa como sesión alternativa.
+- Separar paquetes mínimos, opcionales, administrativos y de rollback.
+
+Criterio de aceptación: cero huérfanos involuntarios, servicios expuestos sólo
+cuando sean necesarios y listas de paquetes con alcance explícito.
