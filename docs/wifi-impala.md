@@ -30,8 +30,23 @@ No borrar el backup hasta comprobar conexión, reconexión y un reinicio.
 
 Migración completada el 2026-07-10:
 
-- interfaz wlp2s0 conectada mediante iwd;
+- interfaz Wi-Fi conectada mediante iwd (detectada como `wlan0` después del
+  reinicio; el nombre puede variar entre arranques);
 - dirección IPv4 y DNS operativos;
 - Impala integrado con el módulo de red de Waybar;
 - NetworkManager deshabilitado;
 - backup verificado en backups/system-wifi/20260710-091212.
+
+## Validación después del reinicio
+
+Completada el 2026-07-10:
+
+- iwd reconectó automáticamente la interfaz `wlan0`;
+- ruta predeterminada, dirección DHCP y resolución DNS operativas;
+- `iwd` y `systemd-resolved` activos y habilitados;
+- NetworkManager deshabilitado;
+- cero unidades fallidas de systemd, tanto de sistema como de usuario;
+- Impala disponible en `/usr/bin/impala`.
+
+Los scripts de uso diario no fijan el nombre de la interfaz. La auditoría usa
+`ip`, `iw` y `resolvectl` para reflejar el backend iwd actual.
