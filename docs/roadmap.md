@@ -30,6 +30,10 @@ Hyprland limpia y uso en reposo acorde con un equipo de 8 GiB.
 
 ## Fase 3 — Reproducibilidad
 
+**Estado: completada localmente el 2026-07-10.** Los dotfiles, listas de
+paquetes y scripts portables de backup, instalación y restauración están
+versionados; el instalador fue validado en un HOME temporal.
+
 - Incorporar dotfiles revisados y libres de datos privados.
 - Crear scripts idempotentes de backup, instalación y restauración.
 - Declarar paquetes oficiales/AUR y servicios habilitados.
@@ -40,8 +44,11 @@ nuevo siguiendo solo el README.
 
 ## Fase 4 — GitHub
 
+**Estado: pendiente.** El repositorio Git local ya existe y contiene los
+primeros commits; falta preparar y crear el remoto público.
+
 - Revisar secretos e información personal en todo el historial.
-- Inicializar Git, hacer el primer commit y crear el remoto.
+- Crear el remoto después de la revisión final y publicar la rama `main`.
 - Añadir licencia, capturas, changelog y política de actualización.
 
 Criterio de aceptación: clonación y prueba de instalación en seco exitosas.

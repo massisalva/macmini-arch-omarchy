@@ -1,7 +1,7 @@
 # Punto de reanudación
 
-Última actualización: 10 de julio de 2026, después de completar la adaptación
-visual y la migración Wi-Fi.
+Última actualización: 10 de julio de 2026, después de validar la migración
+Wi-Fi tras un reinicio.
 
 ## Dónde estamos
 
@@ -72,23 +72,18 @@ sin mantenimiento upstream que genera advertencias con kernels modernos. La
 red funciona y no se cambiará el controlador a ciegas. Si aparecen cortes, se
 evaluará Ethernet o un adaptador Wi-Fi con soporte upstream.
 
-## Acción exacta después del próximo reinicio
+## Validación posterior al reinicio
 
-Abrir una terminal dentro de Hyprland y ejecutar:
+Completada el 2026-07-10 con el informe local
+`reports/local/20260710-092626`:
 
-```bash
-cd ~/Proyectos/macmini-arch-omarchy
-./scripts/audit.sh
-```
-
-Enviar al asistente la nueva ruta `reports/local/<fecha-hora>`.
-
-En esa captura hay que comprobar:
-
-1. Que no aparezcan errores nuevos de RTKit/PipeWire.
-2. Que iwd reconecte automáticamente y que Impala abra desde Waybar.
-3. Que systemd siga mostrando cero unidades fallidas.
-4. Que red, audio y Hyprland sigan operativos.
+1. iwd reconectó automáticamente mediante la interfaz `wlan0`.
+2. iwd y systemd-resolved quedaron activos y habilitados.
+3. NetworkManager permaneció deshabilitado.
+4. La ruta predeterminada y la resolución DNS quedaron operativas.
+5. Systemd mostró cero unidades fallidas de sistema y de usuario.
+6. Impala continuó instalado y disponible.
+7. No aparecieron errores nuevos en el journal.
 
 Los mensajes antiguos ya documentados sobre Logitech HID++, DMI de Apple,
 Broadcom `wl`, nombres D-Bus duplicados y mitigaciones SMT no deben tratarse
@@ -106,13 +101,12 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Configurar la identidad Git local y crear el primer commit.
-2. Reiniciar para validar reconexión automática de iwd.
-3. Revisar secretos nuevamente antes de crear un remoto.
-4. Añadir licencia, capturas y changelog.
+1. Revisar secretos nuevamente antes de crear un remoto.
+2. Añadir licencia, capturas y changelog.
+3. Crear el remoto y publicar el repositorio cuando esté listo.
 
 ## Estado de Git
 
-El repositorio está listo para el primer commit, pero no tiene identidad Git
-local ni remoto de GitHub. `reports/local/` y `backups/` están ignorados porque
-pueden contener hostname, seriales, redes, credenciales y otros datos privados.
+El repositorio tiene historial local en la rama `main`, pero todavía no tiene
+remoto de GitHub. `reports/local/` y `backups/` están ignorados porque pueden
+contener hostname, seriales, redes, credenciales y otros datos privados.

@@ -33,8 +33,12 @@ run boot bootctl status
 run hypr-version hyprctl version
 run hypr-system hyprctl systeminfo
 run hypr-monitors hyprctl monitors all
-run network nmcli general status
-run network-devices nmcli device status
+run network ip address show
+run network-routes ip route show
+run network-devices iw dev
+run network-services systemctl is-active iwd systemd-resolved NetworkManager
+run network-services-enabled systemctl is-enabled iwd systemd-resolved NetworkManager
+run dns resolvectl status
 run audio wpctl status
 run bluetooth bluetoothctl show
 run sensors sensors
