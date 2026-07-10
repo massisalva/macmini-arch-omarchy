@@ -22,4 +22,3 @@ exec foot \
   --override=colors.alpha=1.0 \
   --window-size-chars=92x28 \
   -e impala
-
