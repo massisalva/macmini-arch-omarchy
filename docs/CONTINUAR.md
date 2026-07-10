@@ -101,9 +101,16 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Confirmar que la primera ejecución de GitHub Actions termine correctamente.
-2. Mejorar la guía de instalación desde un Arch limpio.
+1. Mejorar la guía de instalación desde un Arch limpio.
+2. Configurar el dominio regulatorio Wi-Fi de Argentina.
 3. Mantener dotfiles y documentación sincronizados con los cambios locales.
+
+## Integración continua
+
+GitHub Actions quedó activa el 2026-07-10. La ejecución corregida
+`29094174511` terminó correctamente y valida ShellCheck, sintaxis Bash,
+permisos ejecutables, instalación en seco y patrones de credenciales de alto
+riesgo.
 
 ## Estado de Git
 
