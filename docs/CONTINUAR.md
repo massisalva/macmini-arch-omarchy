@@ -101,8 +101,8 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Revisar secretos nuevamente antes de crear un remoto.
-2. Añadir licencia, capturas y changelog.
+1. Tomar una captura limpia que no muestre SSID, usuario ni sesiones privadas.
+2. Reemplazar `OWNER` en los enlaces del changelog al conocer el remoto.
 3. Crear el remoto y publicar el repositorio cuando esté listo.
 
 ## Estado de Git

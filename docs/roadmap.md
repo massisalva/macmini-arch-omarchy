@@ -44,8 +44,9 @@ nuevo siguiendo solo el README.
 
 ## Fase 4 — GitHub
 
-**Estado: pendiente.** El repositorio Git local ya existe y contiene los
-primeros commits; falta preparar y crear el remoto público.
+**Estado: en preparación.** El repositorio Git local, la revisión de secretos,
+la licencia MIT y el changelog están listos. Falta una captura sin información
+privada y crear el remoto público.
 
 - Revisar secretos e información personal en todo el historial.
 - Crear el remoto después de la revisión final y publicar la rama `main`.
