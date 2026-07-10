@@ -21,7 +21,12 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 - Configuración visual y dotfiles portables: completados y versionados.
 - Wi-Fi migrado a iwd e Impala; reconexión validada después de reiniciar.
 - Revisión automatizada de secretos: sin hallazgos de alto riesgo.
-- Publicación en GitHub: pendiente de captura limpia y creación del remoto.
+- Captura pública revisada y libre de datos personales.
+- Publicación en GitHub: pendiente de creación del remoto.
+
+## Captura
+
+![Escritorio Hyprland adaptado para el Mac mini](assets/screenshots/desktop.png)
 
 ## Uso
 
@@ -60,6 +65,7 @@ SMART necesita privilegios y se obtiene por separado:
 - `docs/CONTINUAR.md`: estado exacto y siguiente acción tras un reinicio.
 - `docs/roadmap.md`: etapas y criterios de aceptación.
 - `CHANGELOG.md`: cambios relevantes y estado de la primera versión.
+- `assets/screenshots/`: capturas revisadas para publicación.
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
 - `dotfiles/`: configuraciones revisadas y desplegables.
 - `packages/`: listas declarativas de paquetes oficiales y AUR.

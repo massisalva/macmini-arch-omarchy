@@ -44,9 +44,9 @@ nuevo siguiendo solo el README.
 
 ## Fase 4 — GitHub
 
-**Estado: en preparación.** El repositorio Git local, la revisión de secretos,
-la licencia MIT y el changelog están listos. Falta una captura sin información
-privada y crear el remoto público.
+**Estado: listo para publicar.** El repositorio Git local, la revisión de
+secretos, la licencia MIT, el changelog y la captura pública están listos.
+Falta crear el remoto público.
 
 - Revisar secretos e información personal en todo el historial.
 - Crear el remoto después de la revisión final y publicar la rama `main`.

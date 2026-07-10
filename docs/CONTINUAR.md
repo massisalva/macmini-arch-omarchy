@@ -101,9 +101,9 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Tomar una captura limpia que no muestre SSID, usuario ni sesiones privadas.
-2. Reemplazar `OWNER` en los enlaces del changelog al conocer el remoto.
-3. Crear el remoto y publicar el repositorio cuando esté listo.
+1. Definir el propietario y el nombre del repositorio remoto.
+2. Reemplazar `OWNER` en los enlaces del changelog.
+3. Crear el remoto y publicar la rama `main`.
 
 ## Estado de Git
 
