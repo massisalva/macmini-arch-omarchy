@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -u
+
+notify_info() {
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Energía" "$1" 2>/dev/null || true
+  fi
+}
+
+confirm() {
+  local action="$1"
+
+  choice="$(
+    printf "No\nSí\n" |
+      fuzzel --dmenu --width=28 --lines=2 --prompt="Confirmar $action: "
+  )"
+
+  [ "$choice" = "Sí" ]
+}
+
+run_or_notify() {
+  local message="$1"
+  shift
+
+  if ! "$@"; then
+    notify_info "$message"
+    exit 1
+  fi
+}
+
+choice="$(
+  printf "󰌾  Bloquear\n󰒲  Suspender\n󰜉  Reiniciar\n󰐥  Apagar\n󰗼  Salir de Hyprland\n────────────\nCancelar\n" |
+    fuzzel --dmenu --width=26 --lines=7 --prompt="Energía: "
+)"
+
+case "$choice" in
+  "󰌾  Bloquear")
+    run_or_notify "No pude bloquear la sesión" ~/.local/bin/lock-screen
+    ;;
+
+  "󰒲  Suspender")
+    confirm "suspensión" || exit 0
+    run_or_notify "No pude bloquear la sesión" ~/.local/bin/lock-screen
+    run_or_notify "No pude suspender el equipo" systemctl suspend
+    ;;
+
+  "󰜉  Reiniciar")
+    confirm "reinicio" || exit 0
+    run_or_notify "No pude reiniciar el equipo" systemctl reboot
+    ;;
+
+  "󰐥  Apagar")
+    confirm "apagado" || exit 0
+    run_or_notify "No pude apagar el equipo" systemctl poweroff
+    ;;
+
+  "󰗼  Salir de Hyprland")
+    confirm "salida de Hyprland" || exit 0
+    run_or_notify "No pude salir de Hyprland" uwsm stop
+    ;;
+
+  *)
+    exit 0
+    ;;
+esac

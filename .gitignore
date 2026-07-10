@@ -1,6 +1,8 @@
 reports/local/
 backups/
 *.local
+!dotfiles/.local/
+!dotfiles/.local/**
 *.secret
 *.bak
 *~
