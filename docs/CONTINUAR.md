@@ -101,9 +101,9 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Definir el propietario y el nombre del repositorio remoto.
-2. Reemplazar `OWNER` en los enlaces del changelog.
-3. Crear el remoto y publicar la rama `main`.
+1. Crear `massisalva/macmini-arch-omarchy` como repositorio público.
+2. Añadir el remoto `origin` y publicar la rama `main`.
+3. Crear la versión `v0.1.0` cuando el remoto esté verificado.
 
 ## Estado de Git
 

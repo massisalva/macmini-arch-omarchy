@@ -36,5 +36,5 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Automatic iwd reconnection, default route and DNS resolution.
 - Healthy Kingston A400 SSD and stable Hyprland session.
 
-[Unreleased]: https://github.com/OWNER/macmini-arch-omarchy/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/OWNER/macmini-arch-omarchy/releases/tag/v0.1.0
+[Unreleased]: https://github.com/massisalva/macmini-arch-omarchy/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/massisalva/macmini-arch-omarchy/releases/tag/v0.1.0
