@@ -7,10 +7,6 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
-### Pending
-
-- Publish the repository on GitHub.
-
 ## [0.1.0] - 2026-07-10
 
 ### Added

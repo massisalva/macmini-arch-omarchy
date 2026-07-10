@@ -22,7 +22,7 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 - Wi-Fi migrado a iwd e Impala; reconexión validada después de reiniciar.
 - Revisión automatizada de secretos: sin hallazgos de alto riesgo.
 - Captura pública revisada y libre de datos personales.
-- Publicación en GitHub: pendiente de creación del remoto.
+- Repositorio público: [massisalva/macmini-arch-omarchy](https://github.com/massisalva/macmini-arch-omarchy).
 
 ## Captura
 
