@@ -64,9 +64,11 @@ Criterio de aceptación: clonación y prueba de instalación en seco exitosas.
 **Estado: auditoría completada el 2026-07-10; decisiones pendientes.** El
 inventario y las recomendaciones están en `docs/audit-applications.md`.
 
-- Resolver la necesidad de SSH y definir su política de acceso.
-- Retirar artefactos de depuración huérfanos.
-- Confirmar si Niri continúa como sesión alternativa.
+- Mantener SSH para uso esporádico y migrarlo a autenticación por clave.
+- Artefactos de depuración huérfanos retirados; la comprobación posterior
+  mostró cero huérfanos.
+- Niri, Xwayland Satellite y Swayidle retirados; Hyprland queda como única
+  sesión gráfica.
 - Separar paquetes mínimos, opcionales, administrativos y de rollback.
 
 Criterio de aceptación: cero huérfanos involuntarios, servicios expuestos sólo

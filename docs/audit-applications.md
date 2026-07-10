@@ -36,6 +36,11 @@ instalado `yay-bin-debug`. Son artefactos habituales de compilación AUR y no
 son necesarios para el uso normal; pueden retirarse después de una última
 comprobación de dependencias.
 
+**Resuelto el 2026-07-10:** se retiraron ambos paquetes de depuración junto con
+Niri, Xwayland Satellite y Swayidle. Pacman eliminó 37,65 MiB sin arrastrar
+otras dependencias. La comprobación posterior mostró cero huérfanos, cero
+unidades fallidas y únicamente las sesiones normales de Hyprland.
+
 ### 3. Listas reproducibles con alcance ambiguo
 
 `packages/official.txt` describe el perfil de escritorio, pero la máquina
@@ -55,9 +60,9 @@ Conviene separar claramente:
 
 | Paquete o servicio | Evidencia | Recomendación |
 | --- | --- | --- |
-| `niri` | Instalado explícitamente, inactivo | Retirar sólo si ya no se desea una sesión alternativa |
-| `xwayland-satellite` | Inactivo; opcional para Niri | Retirar junto con Niri, no por separado a ciegas |
-| `swayidle` | Sin dependientes y reemplazado por Hypridle | Buen candidato de limpieza |
+| `niri` | Instalado explícitamente, inactivo | Retirado; Hyprland queda como única sesión |
+| `xwayland-satellite` | Inactivo; opcional para Niri | Retirado junto con Niri |
+| `swayidle` | Sin dependientes y reemplazado por Hypridle | Retirado |
 | NetworkManager + wpa_supplicant | Inactivos; conservados para rollback | Mantener mientras el rollback Wi-Fi siga siendo requisito |
 | `1password` | Aplicación activa; paquete grande | Mantener si se usa; desactivar autostart sólo si se prefiere ahorrar RAM |
 | MPD + ncmpcpp | Servicio y cliente activos | Mantener: forman parte del flujo musical actual |
@@ -81,8 +86,9 @@ instalación dañada; el cambio de UID es una consecuencia del sandbox.
 
 ## Orden recomendado
 
-1. Decidir si SSH debe permanecer habilitado.
-2. Retirar únicamente los paquetes `-debug` huérfanos.
-3. Confirmar si Niri sigue siendo una sesión alternativa deseada.
-4. Retirar Swayidle si Hypridle seguirá siendo el único gestor de inactividad.
-5. Reorganizar las listas de paquetes por perfil y repetir las validaciones.
+1. Mantener SSH para uso esporádico. Actualmente no hay claves autorizadas, por
+   lo que se debe configurar una antes de desactivar autenticación por
+   contraseña.
+2. Definir si el acceso SSH será sólo desde la red local antes de habilitar una
+   regla restrictiva de firewall.
+3. Reorganizar las listas de paquetes por perfil y repetir las validaciones.

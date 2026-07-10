@@ -30,6 +30,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   byte-for-byte output comparison.
 - Added an applications and services audit covering packages, orphans, SSH,
   resource usage and reproducibility gaps.
+- Recorded the decision to keep SSH for occasional use and remove the unused
+  Niri, Xwayland Satellite and Swayidle packages.
+- Removed five unused packages, including two debug artifacts, and verified
+  zero remaining orphans and failed units.
 
 ## [0.1.0] - 2026-07-10
 
