@@ -101,12 +101,13 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Crear `massisalva/macmini-arch-omarchy` como repositorio público.
-2. Añadir el remoto `origin` y publicar la rama `main`.
-3. Crear la versión `v0.1.0` cuando el remoto esté verificado.
+1. Crear la versión pública `v0.1.0` desde el changelog actual.
+2. Mantener dotfiles y documentación sincronizados con los cambios locales.
+3. Conservar fuera de Git los informes, backups y datos particulares.
 
 ## Estado de Git
 
-El repositorio tiene historial local en la rama `main`, pero todavía no tiene
-remoto de GitHub. `reports/local/` y `backups/` están ignorados porque pueden
+La rama `main` está publicada en
+`https://github.com/massisalva/macmini-arch-omarchy` y sigue el remoto
+`origin/main`. `reports/local/` y `backups/` están ignorados porque pueden
 contener hostname, seriales, redes, credenciales y otros datos privados.
