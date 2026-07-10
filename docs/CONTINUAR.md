@@ -101,7 +101,7 @@ como descubrimientos nuevos.
 
 ## Siguiente fase
 
-1. Mejorar la guía de instalación desde un Arch limpio.
+1. Validar la guía desde un usuario temporal o una instalación limpia.
 2. Configurar el dominio regulatorio Wi-Fi de Argentina.
 3. Mantener dotfiles y documentación sincronizados con los cambios locales.
 

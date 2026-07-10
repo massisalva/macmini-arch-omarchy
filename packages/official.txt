@@ -1,4 +1,7 @@
 # Escritorio y sesión
+git
+shellcheck
+linux-lts-headers
 hyprland
 hypridle
 hyprlock
@@ -37,11 +40,24 @@ wireplumber
 pipewire
 pipewire-pulse
 rtkit
+pulsemixer
 playerctl
 wl-clipboard
 cliphist
 grim
 slurp
 jq
+python
 libnotify
 smartmontools
+
+# Aplicaciones y helpers usados por los atajos
+firefox
+thunar
+yazi
+btop
+ncmpcpp
+mpd
+udisks2
+udiskie
+polkit-gnome

@@ -12,10 +12,13 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - GitHub Actions CI for Bash analysis, executable permissions, dry-run
   installation and high-risk credential patterns.
 - Local `scripts/check.sh` entry point matching the CI checks.
+- Clean Arch installation guide with verification and rollback procedures.
+- Portable wallpaper launcher with a Tokyo Night color fallback.
 
 ### Changed
 
 - Resolved all current ShellCheck findings without changing script behavior.
+- Completed the official package list for every default binding and helper.
 
 ## [0.1.0] - 2026-07-10
 

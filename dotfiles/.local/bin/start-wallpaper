@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+wallpaper="${HYPR_WALLPAPER:-$HOME/.config/hypr/wallpaper.png}"
+
+if [[ -f "$wallpaper" ]]; then
+  exec uwsm app -- swaybg -i "$wallpaper" -m fill
+fi
+
+exec uwsm app -- swaybg -c '#1a1b26'

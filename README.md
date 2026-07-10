@@ -32,6 +32,9 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 
 ## Uso
 
+Para instalar el entorno desde una base nueva, seguir la
+[guía de instalación desde Arch limpio](docs/install-from-clean-arch.md).
+
 Ejecutar la auditoría desde una terminal abierta dentro de la sesión real de
 Hyprland (no desde un contenedor):
 
@@ -75,6 +78,7 @@ seco y patrones de credenciales de alto riesgo en el árbol y el historial.
 - `docs/audit-initial.md`: diagnóstico inicial y verificaciones pendientes.
 - `docs/CONTINUAR.md`: estado exacto y siguiente acción tras un reinicio.
 - `docs/roadmap.md`: etapas y criterios de aceptación.
+- `docs/install-from-clean-arch.md`: instalación, verificación y rollback.
 - `CHANGELOG.md`: cambios relevantes y estado de la primera versión.
 - `assets/screenshots/`: capturas revisadas para publicación.
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
