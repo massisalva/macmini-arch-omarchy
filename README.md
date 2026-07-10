@@ -18,11 +18,10 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 
 - Auditoría inicial: completada el 10 de julio de 2026; sistema apto.
 - Ajustes de salud instalados: `smartmontools`, `rtkit` y `wireless-regdb`.
-- Configuración visual existente: detectada y preservada.
-- Cambios del sistema: tres paquetes correctivos instalados; sin cambios de
-  arranque, controladores ni configuración visual.
-- Fase estética y empaquetado de dotfiles: siguiente etapa.
-- Publicación en GitHub: pendiente, una vez revisado que no haya secretos.
+- Configuración visual y dotfiles portables: completados y versionados.
+- Wi-Fi migrado a iwd e Impala; reconexión validada después de reiniciar.
+- Revisión automatizada de secretos: sin hallazgos de alto riesgo.
+- Publicación en GitHub: pendiente de captura limpia y creación del remoto.
 
 ## Uso
 
@@ -60,9 +59,14 @@ SMART necesita privilegios y se obtiene por separado:
 - `docs/audit-initial.md`: diagnóstico inicial y verificaciones pendientes.
 - `docs/CONTINUAR.md`: estado exacto y siguiente acción tras un reinicio.
 - `docs/roadmap.md`: etapas y criterios de aceptación.
+- `CHANGELOG.md`: cambios relevantes y estado de la primera versión.
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
 - `dotfiles/`: configuraciones revisadas y desplegables.
 - `packages/`: listas declarativas de paquetes oficiales y AUR.
+
+## Licencia
+
+Este proyecto se distribuye bajo la [licencia MIT](LICENSE).
 
 ## Principios de seguridad
 
