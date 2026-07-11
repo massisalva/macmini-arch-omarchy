@@ -46,6 +46,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   development, rollback and optional AUR profiles with CI consistency checks.
 - Removed the unused GNOME portal stack while retaining GVfs and XDG User Dirs
   explicitly for Thunar and portable user-directory behavior.
+- Added a concise health check for routine post-update and post-reboot
+  validation of services, networking, portals, packages, DKMS and storage.
 - Updated the pinned GitHub checkout action to v7.0.0, removing the deprecated
   Node.js 20 runtime warning.
 

@@ -73,6 +73,16 @@ Para ejecutar las mismas validaciones que GitHub Actions:
 Requiere `shellcheck`; valida sintaxis, permisos ejecutables, instalación en
 seco y patrones de credenciales de alto riesgo en el árbol y el historial.
 
+Después de reiniciar o actualizar el sistema, ejecutar el diagnóstico breve:
+
+```bash
+./scripts/health-check.sh
+```
+
+Comprueba systemd, servicios esenciales, red, portales, paquetes, DKMS,
+espacio y la integración de Thunar. Intenta leer SMART sin abrir un prompt de
+`sudo`; si no tiene permisos, indica cómo ejecutar la comprobación separada.
+
 ## Estructura
 
 - `docs/audit-initial.md`: diagnóstico inicial y verificaciones pendientes.
@@ -84,6 +94,8 @@ seco y patrones de credenciales de alto riesgo en el árbol y el historial.
 - `CHANGELOG.md`: cambios relevantes y estado de la primera versión.
 - `assets/screenshots/`: capturas revisadas para publicación.
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
+- `scripts/health-check.sh`: semáforo cotidiano posterior a reinicios y
+  actualizaciones.
 - `dotfiles/`: configuraciones revisadas y desplegables.
 - `packages/`: perfiles declarativos de escritorio, hardware, aplicaciones,
   desarrollo, administración, rollback y AUR opcional.

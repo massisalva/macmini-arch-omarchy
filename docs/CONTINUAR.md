@@ -35,6 +35,10 @@ declarados e instalados explícitamente. La papelera y los montajes de Thunar,
 los directorios XDG, los portales y systemd se verificaron sin fallos. No hay
 paquetes huérfanos.
 
+Para controles cotidianos después de reiniciar o actualizar se dispone de
+`scripts/health-check.sh`. Es un diagnóstico breve y no destructivo; la
+auditoría completa continúa en `scripts/audit.sh`.
+
 ## Trabajo realizado
 
 1. Se creó el proyecto en:
