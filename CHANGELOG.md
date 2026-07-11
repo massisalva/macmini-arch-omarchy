@@ -48,6 +48,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   explicitly for Thunar and portable user-directory behavior.
 - Added a concise health check for routine post-update and post-reboot
   validation of services, networking, portals, packages, DKMS and storage.
+- Replaced the public desktop screenshot with a privacy-reviewed clean desktop
+  view that excludes the dynamic network information shown by Waybar.
 - Updated the pinned GitHub checkout action to v7.0.0, removing the deprecated
   Node.js 20 runtime warning.
 

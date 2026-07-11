@@ -1,4 +1,4 @@
-# Inventario visual — 2026-07-10
+# Inventario visual — 2026-07-11
 
 ## Resumen
 
@@ -10,6 +10,10 @@ El barrido de privacidad no encontró tokens, contraseñas, SSID fijos, rutas
 absolutas del usuario ni otros datos personales en los archivos visuales y
 scripts auxiliares revisados. La expresión `{essid}` de Waybar es una variable
 dinámica y no contiene el nombre de una red.
+
+La captura pública se renovó el 2026-07-11 con el escritorio vacío. Se excluyó
+la franja de Waybar porque su contenido dinámico mostraba el SSID activo; la
+imagen final no contiene usuario, red, IP, hostname, ventanas ni notificaciones.
 
 ## Componentes activos
 
