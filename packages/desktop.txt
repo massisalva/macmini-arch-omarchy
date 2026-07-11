@@ -38,11 +38,13 @@ slurp
 libnotify
 
 # Integración del escritorio y helpers
+gvfs
 udisks2
 udiskie
 polkit-gnome
 python
 jq
+xdg-user-dirs
 
 # Red y Bluetooth activos
 impala

@@ -1,7 +1,7 @@
 # Punto de reanudación
 
-Última actualización: 10 de julio de 2026, después de validar la migración
-Wi-Fi tras un reinicio.
+Última actualización: 11 de julio de 2026, después de completar la limpieza
+de aplicaciones y validar la integración del escritorio.
 
 ## Dónde estamos
 
@@ -28,6 +28,12 @@ descartó instalar firmware de otra región o forzarlo periódicamente desde el
 cliente. Se acepta `US` como limitación conocida del punto de acceso actual.
 
 No hay que repetir la instalación ni aplicar reparaciones generales.
+
+La limpieza de aplicaciones también está cerrada. Se retiró el portal GNOME
+sin afectar los portales Hyprland y GTK, y `gvfs` y `xdg-user-dirs` quedaron
+declarados e instalados explícitamente. La papelera y los montajes de Thunar,
+los directorios XDG, los portales y systemd se verificaron sin fallos. No hay
+paquetes huérfanos.
 
 ## Trabajo realizado
 

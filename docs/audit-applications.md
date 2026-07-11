@@ -79,6 +79,19 @@ hardware del Mac mini, aplicaciones, desarrollo, administración, rollback y
 AUR opcional. Los índices compatibles `official.txt` y `aur.txt` se validan
 automáticamente en CI para evitar divergencias.
 
+Durante la limpieza se retiró `xdg-desktop-portal-gnome` y su árbol GNOME. Los
+portales Hyprland y GTK permanecieron activos, pero pacman también retiró GVfs
+y XDG User Dirs como dependencias no requeridas. Ambos se incorporaron al
+perfil base para conservar papelera/montaje de Thunar y la inicialización de
+directorios estándar sin reinstalar Nautilus ni el portal GNOME.
+
+**Validado el 2026-07-11:** `gvfs` y `xdg-user-dirs` quedaron instalados
+explícitamente. GVfs detecta el SSD mediante UDisks2, `trash:///` responde como
+Papelera y `xdg-user-dir DESKTOP` resuelve el directorio esperado. Los portales
+principal, Hyprland y GTK permanecen activos, sin advertencias en el arranque;
+systemd y el gestor de usuario muestran cero unidades fallidas y pacman no
+informa paquetes huérfanos.
+
 ## Candidatos que requieren decisión
 
 | Paquete o servicio | Evidencia | Recomendación |
