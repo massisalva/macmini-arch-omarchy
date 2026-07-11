@@ -17,7 +17,8 @@ Impala, siguiendo el mismo enfoque de Omarchy. El rollback está documentado en
 SSH se conserva para uso ocasional dentro de la LAN. UFW está activo y
 habilitado, con entrada denegada por defecto y TCP/22 permitido únicamente
 desde `192.168.1.0/24`. El acceso root está deshabilitado; la contraseña se
-mantiene hasta instalar y probar una clave autorizada.
+desactiva después de detectar la clave Ed25519 autorizada y probada desde el
+cliente macOS.
 
 El punto de acceso es un TP-Link Deco M4R UC 2.0, variante regional para
 Estados Unidos/Canadá, y anuncia `Country: US` en sus balizas. El kernel acepta

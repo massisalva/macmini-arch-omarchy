@@ -41,7 +41,11 @@ habilitada para restaurar las reglas después de reiniciar.
 **Aplicado el 2026-07-10:** UFW y SSH quedaron habilitados y activos, con cero
 unidades fallidas. La única regla de entrada para TCP/22 acepta
 `192.168.1.0/24`; se eliminaron permisos anteriores para cualquier origen.
-Queda migrar de contraseña a clave en una iteración posterior.
+La clave Ed25519 del cliente macOS fue instalada y probada correctamente. El
+helper detecta `authorized_keys` antes de desactivar contraseñas y exigir clave
+pública, evitando bloquear una instalación que todavía no tenga claves.
+La política final quedó aplicada el 2026-07-11 y una prueba deliberada sin
+clave fue rechazada con `Permission denied (publickey)`.
 
 ### 2. Paquetes de depuración residuales
 

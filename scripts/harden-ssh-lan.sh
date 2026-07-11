@@ -34,11 +34,36 @@ if [[ -e "$drop_in" ]]; then
   cp -a "$drop_in" "${drop_in}.bak"
 fi
 
-cat >"$drop_in" <<'EOF'
-# La contraseña se mantiene hasta instalar y probar una clave autorizada.
+login_user="${SUDO_USER:-}"
+login_home=""
+if [[ -n "$login_user" && "$login_user" != root ]]; then
+  login_home="$(getent passwd "$login_user" | cut -d: -f6)"
+fi
+
+key_ready=false
+if [[ -n "$login_home" && -s "$login_home/.ssh/authorized_keys" ]]; then
+  key_ready=true
+fi
+
+cat >"$drop_in" <<EOF
 PermitRootLogin no
 MaxAuthTries 3
 EOF
+
+if [[ "$key_ready" == true ]]; then
+  cat >>"$drop_in" <<'EOF'
+PubkeyAuthentication yes
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+AuthenticationMethods publickey
+EOF
+else
+  cat >>"$drop_in" <<'EOF'
+# No se detectó authorized_keys para el usuario que invocó sudo.
+PasswordAuthentication yes
+KbdInteractiveAuthentication no
+EOF
+fi
 
 sshd -t
 systemctl restart sshd.service
@@ -63,4 +88,8 @@ if grep -Eq '^22/tcp([[:space:]]| \(v6\)).*ALLOW IN.*Anywhere' <<<"$firewall_sta
   exit 1
 fi
 
-echo "SSH limitado a $subnet por $interface; root deshabilitado."
+if [[ "$key_ready" == true ]]; then
+  echo "SSH limitado a $subnet por $interface; sólo clave pública para $login_user."
+else
+  echo "SSH limitado a $subnet por $interface; contraseña temporal, root deshabilitado."
+fi

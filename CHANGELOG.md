@@ -38,6 +38,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   subnet, disables root login and enables UFW.
 - Made the helper remove pre-existing unrestricted SSH rules and explicitly
   enable Arch's `ufw.service` for persistence across reboots.
+- Made SSH key-only authentication conditional on a non-empty authorized-keys
+  file, preserving safe first-time setup without weakening the final policy.
+- Completed the macOS ED25519 key migration and verified that SSH rejects
+  password-only connections.
 - Updated the pinned GitHub checkout action to v7.0.0, removing the deprecated
   Node.js 20 runtime warning.
 

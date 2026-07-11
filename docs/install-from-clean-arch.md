@@ -152,9 +152,10 @@ sudo ./scripts/harden-ssh-lan.sh
 
 El script detecta la interfaz y subred conectadas, impide el acceso de root y
 habilita UFW permitiendo TCP/22 sólo desde esa subred. Mantiene autenticación
-por contraseña hasta que una clave haya sido instalada y probada. Para retirar
-la regla manualmente, usar `sudo ufw delete allow from SUBRED to any port 22
-proto tcp` antes de definir una política alternativa.
+por contraseña mientras no exista `authorized_keys`; al volver a ejecutarlo
+después de instalar y probar una clave, desactiva contraseña y exige clave
+pública. Para retirar la regla manualmente, usar `sudo ufw delete allow from
+SUBRED to any port 22 proto tcp` antes de definir una política alternativa.
 
 ## Restauración de dotfiles
 
