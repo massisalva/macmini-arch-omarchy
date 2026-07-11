@@ -1,1 +1,7 @@
-# No se requieren paquetes AUR para el perfil actual.
+# Índice compatible de paquetes AUR opcionales.
+# Debe coincidir con optional-aur.txt; no forma parte del perfil base.
+
+1password
+onedrive-abraunegg
+pyradio
+yay-bin

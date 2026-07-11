@@ -61,8 +61,8 @@ Criterio de aceptación: clonación y prueba de instalación en seco exitosas.
 
 ## Fase 5 — Aplicaciones y superficie de servicios
 
-**Estado: auditoría completada el 2026-07-10; decisiones pendientes.** El
-inventario y las recomendaciones están en `docs/audit-applications.md`.
+**Estado: completada el 2026-07-11.** El inventario y las decisiones están en
+`docs/audit-applications.md`.
 
 - Mantener SSH para uso esporádico y migrarlo a autenticación por clave.
 - Artefactos de depuración huérfanos retirados; la comprobación posterior
@@ -70,6 +70,9 @@ inventario y las recomendaciones están en `docs/audit-applications.md`.
 - Niri, Xwayland Satellite y Swayidle retirados; Hyprland queda como única
   sesión gráfica.
 - Separar paquetes mínimos, opcionales, administrativos y de rollback.
+
+SSH quedó limitado a la LAN y exige clave pública. Los paquetes sin uso fueron
+retirados y las listas se separaron en perfiles validados por CI.
 
 Criterio de aceptación: cero huérfanos involuntarios, servicios expuestos sólo
 cuando sean necesarios y listas de paquetes con alcance explícito.

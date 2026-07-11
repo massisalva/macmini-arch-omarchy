@@ -27,16 +27,36 @@ cd macmini-arch-omarchy
 
 ## 2. Revisar e instalar paquetes
 
-`packages/official.txt` es la lista declarativa. Incluye los dos backends de
-red porque la migración segura parte de una conexión activa administrada por
-NetworkManager; no deben quedar ambos servicios habilitados al terminar.
+Los paquetes están separados por perfiles documentados en `packages/README.md`.
+Para este Mac mini, el perfil base combina escritorio, hardware y rollback de
+red. Incluye los dos backends porque la migración segura parte de una conexión
+activa administrada por NetworkManager; no deben quedar ambos servicios
+habilitados al terminar.
 
 ```bash
-mapfile -t packages < <(sed -E '/^[[:space:]]*(#|$)/d' packages/official.txt)
+mapfile -t packages < <(
+  sed -E '/^[[:space:]]*(#|$)/d' \
+    packages/desktop.txt packages/hardware-macmini.txt packages/rollback.txt
+)
 sudo pacman -S --needed "${packages[@]}"
 ```
 
-No se requieren paquetes AUR para el perfil actual. Antes de continuar:
+Las aplicaciones de uso personal y herramientas de desarrollo son opcionales:
+
+```bash
+mapfile -t packages < <(
+  sed -E '/^[[:space:]]*(#|$)/d' \
+    packages/applications.txt packages/development.txt
+)
+sudo pacman -S --needed "${packages[@]}"
+```
+
+Las herramientas de acceso, firewall y diagnóstico están declaradas por
+separado en `packages/administration.txt`; instalar ese perfil cuando la
+máquina también vaya a administrarse remotamente.
+
+`packages/optional-aur.txt` registra aplicaciones AUR de esta máquina, pero no
+forma parte del perfil base ni se instala automáticamente. Antes de continuar:
 
 ```bash
 ./scripts/check.sh

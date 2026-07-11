@@ -74,6 +74,11 @@ Conviene separar claramente:
 - herramientas de desarrollo y administración;
 - paquetes de rollback o compatibilidad.
 
+**Resuelto el 2026-07-11:** `packages/` quedó separado en escritorio,
+hardware del Mac mini, aplicaciones, desarrollo, administración, rollback y
+AUR opcional. Los índices compatibles `official.txt` y `aur.txt` se validan
+automáticamente en CI para evitar divergencias.
+
 ## Candidatos que requieren decisión
 
 | Paquete o servicio | Evidencia | Recomendación |
@@ -109,4 +114,5 @@ instalación dañada; el cambio de UID es una consecuencia del sandbox.
    contraseña.
 2. Definir si el acceso SSH será sólo desde la red local antes de habilitar una
    regla restrictiva de firewall.
-3. Reorganizar las listas de paquetes por perfil y repetir las validaciones.
+3. Mantener los perfiles de paquetes sincronizados mediante CI cuando cambien
+   las aplicaciones de la máquina.

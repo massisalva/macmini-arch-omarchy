@@ -42,6 +42,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   file, preserving safe first-time setup without weakening the final policy.
 - Completed the macOS ED25519 key migration and verified that SSH rejects
   password-only connections.
+- Split package declarations into desktop, Mac mini hardware, applications,
+  development, rollback and optional AUR profiles with CI consistency checks.
 - Updated the pinned GitHub checkout action to v7.0.0, removing the deprecated
   Node.js 20 runtime warning.
 

@@ -1,0 +1,19 @@
+# Control de versiones y revisión del repositorio
+git
+github-cli
+shellcheck
+
+# Herramientas de terminal
+base-devel
+bubblewrap
+fd
+ripgrep
+
+# JavaScript
+nodejs
+npm
+
+# Python
+python-pip
+python-pipx
+uv

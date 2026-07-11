@@ -1,0 +1,7 @@
+# Aplicaciones personales opcionales instaladas desde AUR
+1password
+onedrive-abraunegg
+pyradio
+
+# Helper para administrar AUR; no es requisito del escritorio
+yay-bin

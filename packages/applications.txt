@@ -1,0 +1,20 @@
+# Web, oficina y archivos
+firefox
+libreoffice-still
+libreoffice-still-es
+hunspell-es_ar
+thunar
+yazi
+
+# Multimedia
+btop
+cava
+mpd
+mpc
+mpv
+ncmpcpp
+ncspot
+pavucontrol
+
+# Gestión gráfica de Bluetooth
+blueman

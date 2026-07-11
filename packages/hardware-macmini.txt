@@ -1,0 +1,25 @@
+# Kernel, arranque y Mac mini 2014
+dkms
+efibootmgr
+intel-ucode
+limine
+linux-firmware
+linux-lts
+linux-lts-headers
+mkinitcpio
+
+# Intel HD 5100
+libva
+libva-intel-driver
+mesa
+vulkan-intel
+
+# Broadcom BCM4360
+broadcom-wl-dkms
+wireless-regdb
+
+# Memoria comprimida
+zram-generator
+
+# Diagnóstico del hardware
+smartmontools

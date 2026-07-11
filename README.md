@@ -85,7 +85,8 @@ seco y patrones de credenciales de alto riesgo en el árbol y el historial.
 - `assets/screenshots/`: capturas revisadas para publicación.
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
 - `dotfiles/`: configuraciones revisadas y desplegables.
-- `packages/`: listas declarativas de paquetes oficiales y AUR.
+- `packages/`: perfiles declarativos de escritorio, hardware, aplicaciones,
+  desarrollo, administración, rollback y AUR opcional.
 
 ## Licencia
 

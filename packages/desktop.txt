@@ -1,0 +1,52 @@
+# Sesión Wayland
+hyprland
+hypridle
+hyprlock
+uwsm
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+
+# Interfaz
+waybar
+fuzzel
+foot
+mako
+swaybg
+swayosd
+adwaita-icon-theme
+gtk3
+gtk4
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+ttf-dejavu
+
+# Audio, portapapeles y capturas
+wireplumber
+pipewire
+pipewire-alsa
+pipewire-audio
+pipewire-pulse
+rtkit
+pulsemixer
+playerctl
+wl-clipboard
+cliphist
+grim
+slurp
+libnotify
+
+# Integración del escritorio y helpers
+udisks2
+udiskie
+polkit-gnome
+python
+jq
+
+# Red y Bluetooth activos
+impala
+iwd
+bluetui
+bluez
+bluez-utils

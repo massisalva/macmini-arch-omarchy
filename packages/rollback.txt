@@ -1,0 +1,3 @@
+# Backend anterior conservado para rollback de iwd
+networkmanager
+wpa_supplicant

@@ -1,0 +1,21 @@
+# Acceso y firewall
+openssh
+ufw
+
+# Mantenimiento de Arch
+pacman-contrib
+reflector
+
+# Diagnóstico
+alsa-utils
+fwupd
+pciutils
+powertop
+usbutils
+
+# Terminal y edición
+bash-completion
+less
+nano
+unzip
+vim
