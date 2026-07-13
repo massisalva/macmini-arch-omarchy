@@ -11,12 +11,15 @@ xdg-desktop-portal-hyprland
 waybar
 fuzzel
 foot
+fish
 mako
 swaybg
 swayosd
 adwaita-icon-theme
+capitaine-cursors
 gtk3
 gtk4
+tela-circle-icon-theme-blue
 ttf-jetbrains-mono-nerd
 noto-fonts
 noto-fonts-emoji

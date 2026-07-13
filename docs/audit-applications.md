@@ -129,3 +129,24 @@ instalación dañada; el cambio de UID es una consecuencia del sandbox.
    regla restrictiva de firewall.
 3. Mantener los perfiles de paquetes sincronizados mediante CI cuando cambien
    las aplicaciones de la máquina.
+
+## Revisión orientada a trabajo documental — 2026-07-12
+
+La revisión posterior confirmó cero paquetes huérfanos y sólo cinco paquetes
+externos conocidos (`1password`, `localsend-bin`, `onedrive-abraunegg`,
+`pyradio` y `yay-bin`).
+No se encontraron aplicaciones explícitas que sea seguro retirar sin eliminar
+una función elegida por el usuario. NetworkManager y wpa_supplicant continúan
+como rollback de red documentado.
+
+Las entradas técnicas de Avahi, GPS, Video4Linux y XFCE que aparecen en el
+lanzador pertenecen a dependencias de LibreOffice, Waybar, MPV y Thunar. En
+lugar de desinstalarlas, se añadieron anulaciones locales `Hidden=true` para
+limpiar Fuzzel sin afectar esas dependencias.
+
+El perfil de documentos incorpora Zathura con soporte MuPDF, QPDF, silabeo y
+sinónimos en español, y tipografías métricamente compatibles con Arial, Times
+New Roman, Calibri y Cambria. Se mantienen LibreOffice Still, su traducción al
+español y Hunspell de Argentina. LanguageTool y Pandoc se posponen: el primero
+añade Java y unos 386 MiB, y el segundo un árbol Haskell considerable, sin que
+exista todavía un flujo concreto que justifique ese costo.

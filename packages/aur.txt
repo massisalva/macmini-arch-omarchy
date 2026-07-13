@@ -2,6 +2,7 @@
 # Debe coincidir con optional-aur.txt; no forma parte del perfil base.
 
 1password
+localsend-bin
 onedrive-abraunegg
 pyradio
 yay-bin

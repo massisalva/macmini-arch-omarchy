@@ -15,6 +15,16 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Clean Arch installation guide with verification and rollback procedures.
 - Portable wallpaper launcher with a Tokyo Night color fallback.
 - `iwd` migration now writes `Country=AR` and installs the regulatory database.
+- Fish configuration with Tokyo Night prompt, FZF, Zoxide and portable Bash
+  fallback.
+- Categorized Fuzzel application drawer launched from an Arch button in
+  Waybar.
+- Tela Circle Blue Dark icons, Capitaine cursor and matching GTK 4 settings.
+- Document workflow with Zathura, QPDF, Office-compatible fonts, Spanish
+  language resources, lightweight file tools and archive integration.
+- Fastfetch Tokyo Night hardware summary and Git Delta configuration.
+- LocalSend profile and LAN-only UFW helper for TCP/UDP port 53317.
+- Firefox Haswell VA-API notes and conservative hardware-decoding preferences.
 
 ### Changed
 
@@ -52,6 +62,12 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   view that excludes the dynamic network information shown by Waybar.
 - Updated the pinned GitHub checkout action to v7.0.0, removing the deprecated
   Node.js 20 runtime warning.
+- Harmonized Waybar's music color with the Tokyo Night accent and added the
+  categorized launcher.
+- Enlarged Fuzzel for the 1920×1080 display and reduced its visible entries to
+  curated applications.
+- Expanded package profiles for document work, Arch diagnostics and terminal
+  exploration while retaining zero package orphans.
 
 ## [0.1.0] - 2026-07-10
 

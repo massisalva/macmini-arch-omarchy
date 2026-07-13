@@ -1,10 +1,26 @@
 # Web, oficina y archivos
 firefox
+7zip
+imv
 libreoffice-still
 libreoffice-still-es
 hunspell-es_ar
+hyphen-es
+mythes-es
+qpdf
+galculator
+mousepad
 thunar
+thunar-archive-plugin
+ttf-caladea
+ttf-carlito
+ttf-liberation
 yazi
+xarchiver
+zip
+unrar
+zathura
+zathura-pdf-mupdf
 
 # Multimedia
 btop

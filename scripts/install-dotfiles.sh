@@ -31,6 +31,21 @@ backup="$("$project_dir/scripts/backup-dotfiles.sh" | sed -n 's/^Backup creado e
 
 cp -a "$source_dir/." "$HOME/"
 
+bash_prompt_source='[[ -f ~/.config/bash/prompt.sh ]] && . ~/.config/bash/prompt.sh'
+if [[ ! -f "$HOME/.bashrc" ]]; then
+  printf '%s\n' "$bash_prompt_source" > "$HOME/.bashrc"
+elif ! grep -Fqx "$bash_prompt_source" "$HOME/.bashrc"; then
+  printf '\n# Prompt portable del proyecto Mac mini.\n%s\n' "$bash_prompt_source" >> "$HOME/.bashrc"
+fi
+
+git_config_include='[include]'
+git_config_path=$'\tpath = ~/.config/git/config'
+if [[ ! -f "$HOME/.gitconfig" ]]; then
+  printf '%s\n%s\n' "$git_config_include" "$git_config_path" > "$HOME/.gitconfig"
+elif ! grep -Fqx "$git_config_path" "$HOME/.gitconfig"; then
+  printf '\n%s\n%s\n' "$git_config_include" "$git_config_path" >> "$HOME/.gitconfig"
+fi
+
 if [[ ! -e "$HOME/.config/hypr/personal.conf" ]]; then
   cp "$HOME/.config/hypr/personal.conf.example" "$HOME/.config/hypr/personal.conf"
 fi

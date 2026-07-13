@@ -24,6 +24,16 @@ window#waybar {
 .modules-left { margin-left: 8px; }
 .modules-right { margin-right: 8px; }
 
+#custom-launcher {
+  color: @accent;
+  min-width: 14px;
+  margin-right: 7px;
+  padding: 0 5px;
+  font-size: 15px;
+}
+
+#custom-launcher:hover { color: @foreground; }
+
 #workspaces button {
   all: initial;
   padding: 0 6px;
@@ -39,7 +49,7 @@ window#waybar {
 #workspaces button.urgent { color: @red; }
 
 #custom-music {
-  color: #9ece6a;
+  color: @accent;
   margin-left: 8px;
   padding: 0 6px;
 }

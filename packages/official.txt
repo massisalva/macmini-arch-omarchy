@@ -6,10 +6,12 @@ bluetui
 bluez
 bluez-utils
 broadcom-wl-dkms
+capitaine-cursors
 cliphist
 dkms
 efibootmgr
 foot
+fish
 fuzzel
 grim
 gtk3
@@ -25,6 +27,7 @@ jq
 libnotify
 libva
 libva-intel-driver
+libva-utils
 limine
 linux-firmware
 linux-lts
@@ -50,6 +53,7 @@ swaybg
 swayosd
 ttf-dejavu
 ttf-jetbrains-mono-nerd
+tela-circle-icon-theme-blue
 udiskie
 udisks2
 uwsm

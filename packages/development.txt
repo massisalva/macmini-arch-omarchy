@@ -6,8 +6,16 @@ shellcheck
 # Herramientas de terminal
 base-devel
 bubblewrap
+bat
+eza
 fd
+fzf
+git-delta
+hyperfine
 ripgrep
+tealdeer
+tree
+zoxide
 
 # JavaScript
 nodejs

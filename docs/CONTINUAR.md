@@ -1,7 +1,7 @@
 # Punto de reanudación
 
-Última actualización: 11 de julio de 2026, después de completar la limpieza
-de aplicaciones y validar la integración del escritorio.
+Última actualización: 12 de julio de 2026, después de ampliar el entorno de
+trabajo, personalizar la terminal y sincronizar los dotfiles.
 
 ## Dónde estamos
 
@@ -38,6 +38,24 @@ paquetes huérfanos.
 Para controles cotidianos después de reiniciar o actualizar se dispone de
 `scripts/health-check.sh`. Es un diagnóstico breve y no destructivo; la
 auditoría completa continúa en `scripts/audit.sh`.
+
+La sesión usa Fish como shell interactivo predeterminado, conservando Bash
+para recuperación y scripts. FZF y Zoxide están integrados; Git usa Delta y
+Fastfetch dispone del preset Tokyo Night ejecutable mediante `ff`.
+
+Waybar incorpora un botón Arch que abre un cajón Fuzzel por categorías. Los
+iconos Tela Circle Blue Dark y el cursor Capitaine están unificados en GTK 3,
+GTK 4, Fuzzel y Hyprland. Las entradas técnicas de aplicaciones se ocultan
+mediante anulaciones `.desktop` locales, sin retirar sus dependencias.
+
+El perfil documental incluye LibreOffice, diccionario argentino, silabeo y
+sinónimos en español, tipografías compatibles con Microsoft Office, Zathura,
+QPDF, Mousepad, IMV y manejo de comprimidos integrado con Thunar. LocalSend
+está instalado y UFW permite TCP/UDP 53317 sólo desde `192.168.1.0/24`.
+
+Firefox usa VA-API con el controlador Intel `i965`; la HD 5100 acelera H.264
+pero no VP9 ni AV1. El perfil activo habilita decodificación por hardware y
+desactiva AV1. La decisión está documentada en `docs/firefox-performance.md`.
 
 ## Trabajo realizado
 
@@ -127,6 +145,8 @@ como descubrimientos nuevos.
 1. Mantener dotfiles y documentación sincronizados con los cambios locales.
 2. Reservar una validación desde Arch limpio para cuando exista una máquina o
    entorno descartable apropiado; la instalación en HOME vacío ya pasó.
+3. Instalar impresión o escaneo únicamente cuando exista hardware concreto
+   que lo requiera; no añadir CUPS ni Simple Scan de forma preventiva.
 
 ## Integración continua
 

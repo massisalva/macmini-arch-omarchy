@@ -8,9 +8,16 @@ reflector
 
 # Diagnóstico
 alsa-utils
+fastfetch
 fwupd
+bind
+imagemagick
+lsof
+nmap
 pciutils
 powertop
+rsync
+strace
 usbutils
 
 # Terminal y edición

@@ -4,9 +4,16 @@
   "height": 26,
   "spacing": 0,
 
-  "modules-left": ["hyprland/workspaces", "custom/music"],
+  "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/music"],
   "modules-center": ["clock"],
   "modules-right": ["custom/capslock", "custom/disk", "cpu", "memory", "bluetooth", "network", "pulseaudio", "custom/power"],
+
+  "custom/launcher": {
+    "format": "󰣇",
+    "on-click": "~/.local/bin/app-drawer",
+    "tooltip": true,
+    "tooltip-format": "Aplicaciones por categorías"
+  },
 
   "custom/music": {
     "exec": "~/.local/bin/waybar-music --watch",

@@ -9,11 +9,20 @@ files=(
   .config/hypr
   .config/waybar
   .config/fuzzel
+  .config/fish
+  .config/fastfetch
+  .config/git
+  .config/bash
   .config/foot
   .config/mako
+  .config/zathura
   .config/gtk-3.0/settings.ini
+  .config/gtk-4.0/settings.ini
+  .local/share/applications
   .local/bin/hypr-autostart
   .local/bin/lock-screen
+  .bashrc
+  .gitconfig
 )
 
 mkdir -p "$backup_dir"

@@ -11,6 +11,7 @@ mkinitcpio
 # Intel HD 5100
 libva
 libva-intel-driver
+libva-utils
 mesa
 vulkan-intel
 

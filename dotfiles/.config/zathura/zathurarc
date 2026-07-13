@@ -1,0 +1,25 @@
+# Tokyo Night para la interfaz. Los documentos conservan sus colores originales.
+set font "JetBrainsMono Nerd Font 10"
+set default-bg "#1a1b26"
+set default-fg "#a9b1d6"
+set statusbar-bg "#32344a"
+set statusbar-fg "#a9b1d6"
+set inputbar-bg "#1a1b26"
+set inputbar-fg "#c0caf5"
+set notification-bg "#32344a"
+set notification-fg "#a9b1d6"
+set notification-error-bg "#f7768e"
+set notification-error-fg "#1a1b26"
+set notification-warning-bg "#e0af68"
+set notification-warning-fg "#1a1b26"
+set highlight-color "rgba(224,175,104,0.45)"
+set highlight-active-color "rgba(122,162,247,0.55)"
+set completion-bg "#1a1b26"
+set completion-fg "#a9b1d6"
+set completion-highlight-bg "#32344a"
+set completion-highlight-fg "#7aa2f7"
+set recolor-lightcolor "#1a1b26"
+set recolor-darkcolor "#c0caf5"
+set recolor-keephue true
+set selection-clipboard clipboard
+set window-title-home-tilde true

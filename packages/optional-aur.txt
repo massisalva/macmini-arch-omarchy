@@ -1,5 +1,6 @@
 # Aplicaciones personales opcionales instaladas desde AUR
 1password
+localsend-bin
 onedrive-abraunegg
 pyradio
 

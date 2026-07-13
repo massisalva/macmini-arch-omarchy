@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+menu() {
+  local prompt=$1
+  fuzzel --dmenu \
+    --prompt="$prompt: " \
+    --lines=8 \
+    --width=48 \
+    --with-nth=2 \
+    --accept-nth=1 \
+    --match-nth=2 \
+    --only-match
+}
+
+category="$({
+  printf 'office\tOficina\0icon\x1fapplications-office\n'
+  printf 'internet\tInternet\0icon\x1fapplications-internet\n'
+  printf 'system\tArch y sistema\0icon\x1fdistributor-logo-archlinux,utilities-terminal\n'
+  printf 'files\tArchivos\0icon\x1fsystem-file-manager\n'
+  printf 'media\tMultimedia\0icon\x1fapplications-multimedia\n'
+} | menu Categorías)" || exit 0
+
+case "$category" in
+  office)
+    application="$({
+      printf 'back\t← Volver a categorías\0icon\x1fgo-previous\n'
+      printf 'libreoffice-startcenter\tLibreOffice\0icon\x1flibreoffice-startcenter\n'
+      printf 'libreoffice-writer\tWriter\0icon\x1flibreoffice-writer\n'
+      printf 'libreoffice-calc\tCalc\0icon\x1flibreoffice-calc\n'
+      printf 'libreoffice-draw\tDraw\0icon\x1flibreoffice-draw\n'
+      printf 'libreoffice-impress\tImpress\0icon\x1flibreoffice-impress\n'
+      printf 'org.pwmt.zathura\tZathura PDF\0icon\x1forg.pwmt.zathura\n'
+      printf 'galculator\tGalculator\0icon\x1fgalculator,accessories-calculator\n'
+      printf 'org.xfce.mousepad\tMousepad\0icon\x1forg.xfce.mousepad,accessories-text-editor\n'
+    } | menu Oficina)" || exit 0
+    ;;
+  internet)
+    application="$({
+      printf 'back\t← Volver a categorías\0icon\x1fgo-previous\n'
+      printf 'firefox\tFirefox\0icon\x1ffirefox\n'
+      printf '1password\t1Password\0icon\x1f1password\n'
+    } | menu Internet)" || exit 0
+    ;;
+  system)
+    application="$({
+      printf 'back\t← Volver a categorías\0icon\x1fgo-previous\n'
+      printf 'terminal\tFoot\0icon\x1ffoot,utilities-terminal\n'
+      printf 'btop\tBtop\0icon\x1fbtop,utilities-system-monitor\n'
+      printf 'blueman-manager\tBluetooth\0icon\x1fblueman,bluetooth\n'
+    } | menu Sistema)" || exit 0
+    ;;
+  files)
+    application="$({
+      printf 'back\t← Volver a categorías\0icon\x1fgo-previous\n'
+      printf 'thunar\tThunar\0icon\x1forg.xfce.thunar,system-file-manager\n'
+      printf 'yazi\tYazi\0icon\x1fyazi,system-file-manager\n'
+      printf 'localsend\tLocalSend\0icon\x1flocalsend,folder-publicshare\n'
+      printf 'imv\tVisor de imágenes\0icon\x1fmultimedia-photo-viewer,image-x-generic\n'
+      printf 'xarchiver\tXarchiver\0icon\x1fxarchiver,package-x-generic\n'
+    } | menu Archivos)" || exit 0
+    ;;
+  media)
+    application="$({
+      printf 'back\t← Volver a categorías\0icon\x1fgo-previous\n'
+      printf 'mpv\tMPV\0icon\x1fmpv,video-x-generic\n'
+      printf 'ncspot\tncspot\0icon\x1fncspot,audio-x-generic\n'
+      printf 'pyradio\tPyRadio\0icon\x1fpyradio,radio\n'
+      printf 'pavucontrol\tControl de volumen\0icon\x1forg.pulseaudio.pavucontrol,audio-volume-high\n'
+    } | menu Multimedia)" || exit 0
+    ;;
+  *) exit 0 ;;
+esac
+
+case "$application" in
+  back) exec "$0" ;;
+  terminal) exec uwsm app -- foot --app-id foot-term fish ;;
+  btop) exec uwsm app -- foot --app-id foot-system -e btop ;;
+  yazi) exec uwsm app -- foot --app-id foot-files -e yazi ;;
+  ncspot) exec uwsm app -- foot --app-id foot-music-ncspot -e ncspot ;;
+  pyradio) exec uwsm app -- foot --app-id foot-music-pyradio -e pyradio ;;
+  *) exec uwsm app -- gtk-launch "$application" ;;
+esac

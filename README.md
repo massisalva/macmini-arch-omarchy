@@ -22,6 +22,9 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 - Ajustes de salud instalados: `smartmontools`, `rtkit` y `wireless-regdb`.
 - Configuración visual y dotfiles portables: completados y versionados.
 - Wi-Fi migrado a iwd e Impala; reconexión validada después de reiniciar.
+- Fish, FZF, Zoxide, Git Delta y Fastfetch integrados con Tokyo Night.
+- Cajón Fuzzel por categorías, iconos Tela y cursor Capitaine desplegados.
+- Flujo documental y LocalSend configurados; firewall limitado a la LAN.
 - Revisión automatizada de secretos: sin hallazgos de alto riesgo.
 - Captura pública revisada y libre de datos personales.
 - Repositorio público: [massisalva/macmini-arch-omarchy](https://github.com/massisalva/macmini-arch-omarchy).
@@ -96,6 +99,8 @@ espacio y la integración de Thunar. Intenta leer SMART sin abrir un prompt de
 - `scripts/audit.sh`: recolección de evidencia, sin modificar el sistema.
 - `scripts/health-check.sh`: semáforo cotidiano posterior a reinicios y
   actualizaciones.
+- `scripts/configure-localsend-ufw.sh`: reglas TCP/UDP limitadas a la LAN para
+  LocalSend.
 - `dotfiles/`: configuraciones revisadas y desplegables.
 - `packages/`: perfiles declarativos de escritorio, hardware, aplicaciones,
   desarrollo, administración, rollback y AUR opcional.
