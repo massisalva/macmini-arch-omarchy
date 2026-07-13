@@ -31,7 +31,7 @@ i5-4278U, Intel HD Graphics 5100 y 8 GiB de RAM.
 
 ## Captura
 
-![Escritorio Hyprland adaptado para el Mac mini](assets/screenshots/desktop.png)
+![Escritorio Hyprland con Fastfetch, Fuzzel, ncmpcpp y Cava](assets/screenshots/desktop-workflow.png)
 
 ## Uso
 
