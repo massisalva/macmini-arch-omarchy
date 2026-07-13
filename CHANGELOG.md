@@ -70,6 +70,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   exploration while retaining zero package orphans.
 - Replaced the public screenshot with a privacy-reviewed composition showing
   Waybar music metadata, categorized Fuzzel, Fastfetch, ncmpcpp and Cava.
+- Reworked the README around the Mac mini hardware, desktop components,
+  visual identity, applications, shortcuts and a concise installation guide.
+- Removed the duplicate `Super+Shift+F` binding by moving window centering to
+  `Super+Ctrl+Space`.
 
 ## [0.1.0] - 2026-07-10
 
