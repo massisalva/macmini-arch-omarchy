@@ -11,9 +11,13 @@ absolutas del usuario ni otros datos personales en los archivos visuales y
 scripts auxiliares revisados. La expresión `{essid}` de Waybar es una variable
 dinámica y no contiene el nombre de una red.
 
-La captura pública se renovó el 2026-07-11 con el escritorio vacío. Se excluyó
-la franja de Waybar porque su contenido dinámico mostraba el SSID activo; la
-imagen final no contiene usuario, red, IP, hostname, ventanas ni notificaciones.
+La captura pública se renovó el 2026-07-12 con una composición representativa:
+Fastfetch, ncmpcpp, Cava, el cajón Fuzzel por categorías y Waybar con metadata
+musical. Para la foto, Waybar reemplazó temporalmente el SSID por `Wi-Fi` y
+Fuzzel se abrió en capa `top` para conservar visible el escritorio. La imagen
+no contiene SSID, IP, rutas, tokens, notificaciones ni cuentas privadas; el
+usuario público del repositorio y el hostname genérico `macmini` se mantienen
+como parte de la identidad visual del proyecto.
 
 ## Componentes activos
 
@@ -25,7 +29,7 @@ imagen final no contiene usuario, red, IP, hostname, ventanas ni notificaciones.
 | Foot | `~/.config/foot/` | Terminal activa |
 | Mako | `~/.config/mako/` | Notificaciones activas como servicio |
 | Hyprlock | `~/.config/hypr/hyprlock.conf` | Bloqueador activo mediante `lock-screen` |
-| GTK 3 | `~/.config/gtk-3.0/settings.ini` | Adwaita oscuro, sin tema Omarchy unificado |
+| GTK 3/4 | `~/.config/gtk-{3,4}.0/settings.ini` | Adwaita oscuro, iconos Tela y cursor Capitaine |
 | Fondo | `~/.config/hypr/wallpaper.png` | Activo mediante Swaybg |
 
 ## Arquitectura de Hyprland
@@ -59,8 +63,8 @@ Hyprland, Waybar, Foot, Mako e Hyprlock ya comparten esta familia.
 ## Inconsistencias resueltas
 
 1. Fuzzel fue unificado con la paleta Tokyo Night.
-2. GTK conserva deliberadamente Adwaita oscuro, incluidos iconos y cursor,
-   para evitar dependencias externas y mantener una apariencia coherente.
+2. GTK conserva deliberadamente Adwaita oscuro, con iconos Tela Circle Blue
+   Dark y cursor Capitaine declarados en los perfiles reproducibles.
 3. La referencia ZIP del proyecto previo `conectar-igualdad-sway` se usó sólo
    para scripts y comportamiento, no como fuente visual de Hyprland.
 

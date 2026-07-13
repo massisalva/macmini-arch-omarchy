@@ -68,6 +68,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   curated applications.
 - Expanded package profiles for document work, Arch diagnostics and terminal
   exploration while retaining zero package orphans.
+- Replaced the public screenshot with a privacy-reviewed composition showing
+  Waybar music metadata, categorized Fuzzel, Fastfetch, ncmpcpp and Cava.
 
 ## [0.1.0] - 2026-07-10
 
